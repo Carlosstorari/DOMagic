@@ -1,7 +1,9 @@
 package com.project.catalogingmtgcards
 
 import android.app.Application
-import com.project.catalogingmtgcards.di.appModules
+import com.project.catalogingmtgcards.data.di.DataModule
+import com.project.catalogingmtgcards.domain.di.UseCaseModule
+import com.project.catalogingmtgcards.presentation.di.PresentationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -11,8 +13,10 @@ class MainApplication: Application() {
         super.onCreate()
         startKoin{
             androidContext(this@MainApplication)
-            modules(appModules)
         }
+        DataModule.loadDataModule()
+        UseCaseModule.loadUseCaseModule()
+        PresentationModule.loadPresentationModule()
     }
 
 }

@@ -1,7 +1,6 @@
 package com.project.catalogingmtgcards.data.service
 
-import com.project.catalogingmtgcards.data.model.Card
-import com.project.catalogingmtgcards.data.model.CardList
+import com.project.catalogingmtgcards.data.response.CardListResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -11,5 +10,5 @@ interface ScryfallService {
 //    suspend fun getCardByName(@Query("fuzzy") cardName: String): Response<Card>
 
     @GET("cards/search")
-    suspend fun getListCards(@Query("q") searchQuery: String): Response<CardList>
+    suspend fun getListCards(@Query("q") searchQuery: String): Response<CardListResponse>
 }

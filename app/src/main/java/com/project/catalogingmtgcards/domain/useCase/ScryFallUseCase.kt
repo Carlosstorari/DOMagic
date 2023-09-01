@@ -1,4 +1,10 @@
 package com.project.catalogingmtgcards.domain.useCase
 
-class ScryFallUseCase {
+import com.project.catalogingmtgcards.domain.ScryFallStateUseCase
+
+//Chama o repository e devolve um state Success(Response) ou Error
+//Se retornar Success converte o response em model
+
+interface ScryFallUseCase {
+    suspend fun getListCard(colorCardName: String): ScryFallStateUseCase
 }
