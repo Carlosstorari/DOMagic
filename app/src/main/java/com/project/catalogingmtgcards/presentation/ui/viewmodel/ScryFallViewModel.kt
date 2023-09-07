@@ -24,6 +24,11 @@ class ScryFallViewModel(
         viewModelScope.launch {
             val e = useCase.getListCard("color:red cmc=1")
             Log.d("testeeee", e.toString())
+            if (e is ScryFallStateUseCase.Success) {
+                for(item in e.card?.data!!) {
+                    Log.d("testeeee", "${item.name} ${item.typeLine}")
+                }
+            }
             //state.postValue(ScryFallViewModelState.Success(e))
         }
     }
