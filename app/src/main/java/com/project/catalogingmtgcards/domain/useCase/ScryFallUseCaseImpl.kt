@@ -7,10 +7,10 @@ import com.project.catalogingmtgcards.domain.ScryFallStateUseCase
 
 class ScryFallUseCaseImpl(private val repository: ScryFallRepository, private val service: ScryfallService) :ScryFallUseCase {
 
-    override suspend fun getListCard(colorCardName: String): ScryFallStateUseCase {
+    override suspend fun getListCardByColorUseCase(colorCardName: String): ScryFallStateUseCase {
         val response = service.getListCards(colorCardName)
         //Repository retorna um ScryFallStateRepository do tipo Success ou Error
-        return when(repository.getCard(colorCardName)) {
+        return when(repository.getListCardByColor(colorCardName)) {
             ScryFallStateRepository.Success(data = response.body()) -> {
                 ScryFallStateUseCase.Success(response.body())
             }

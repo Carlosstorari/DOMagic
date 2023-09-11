@@ -1,11 +1,11 @@
 package com.project.catalogingmtgcards.data.response
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 
 @Serializable
 data class CardResponse(
-    @SerialName("name") val name: String,
-    @SerialName("type_line") val typeLine: String
+    @SerializedName("name") val name: String,
+    @SerializedName("type_line") val typeLine: String
 )
