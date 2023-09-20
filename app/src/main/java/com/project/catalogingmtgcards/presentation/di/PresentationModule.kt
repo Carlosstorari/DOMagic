@@ -12,6 +12,6 @@ object PresentationModule {
     }
 
     private val viewModelModule = module {
-        viewModel { ScryFallViewModel(get(), get()) }
+        viewModel { ScryFallViewModel(get(), get(), get()) }
     }
 }

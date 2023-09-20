@@ -27,4 +27,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/card_name"/>
 
+    <TextView
+        android:id="@+id/mana_cost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text = "mana cost"
+        android:layout_marginTop="5dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_name"/>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,6 @@ import com.project.catalogingmtgcards.domain.ScryFallStateUseCase
 //Chama o repository e devolve um state Success(Response) ou Error
 //Se retornar Success converte o response em model
 
-interface ScryFallUseCase {
+interface GetCardByColorUseCase {
     suspend fun getListCardByColorUseCase(colorCardName: String): ScryFallStateUseCase
 }

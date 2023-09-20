@@ -4,22 +4,23 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.project.catalogingmtgcards.data.response.CardResponse
 import com.project.catalogingmtgcards.databinding.CardListItemBinding
+import com.project.catalogingmtgcards.domain.model.Card
 
 class ListaCardsAdapter(
     private val context: Context,
-    cards: List<CardResponse>
+    cards: List<Card>
 ): RecyclerView.Adapter<ListaCardsAdapter.ViewHolder>() {
 
     private val cards = cards.toMutableList()
 
     class ViewHolder(private val binding: CardListItemBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bindCard(card:CardResponse) {
+        fun bindCard(card:Card) {
             binding.apply {
                 cardName.text = card.name
                 cardColor.text = card.typeLine
+                //manaCost.text = card.manaCost
             }
         }
     }

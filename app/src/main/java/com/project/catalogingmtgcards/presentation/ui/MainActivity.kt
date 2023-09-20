@@ -22,17 +22,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        viewModel.searchCard()
+        viewModel.getCardListItem()
         viewModel.getState.observe(this, Observer {
             when(it) {
                 is ScryFallViewModelState.Success -> {
-                    setupRecyclerView(it.card.data)
+                    setupRecyclerView(it.card)
+                    Log.d("cardList", it.card.toString())
+
                 }
+
+                else -> {Log.d("e", "Errorrrrr")}
             }
         })
     }
 
-    private fun setupRecyclerView(list: List<CardResponse>) {
+    private fun setupRecyclerView(list: List<Card>) {
         binding.cardListHome.apply {
             adapter = ListaCardsAdapter(this@MainActivity, list)
             layoutManager = LinearLayoutManager(this@MainActivity)
