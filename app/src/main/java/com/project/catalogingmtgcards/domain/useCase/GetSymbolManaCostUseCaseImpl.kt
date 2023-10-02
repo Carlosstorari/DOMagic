@@ -1,21 +1,20 @@
 package com.project.catalogingmtgcards.domain.useCase
 
 import android.util.Log
-import com.project.catalogingmtgcards.data.repository.ScryFallRepository
-import com.project.catalogingmtgcards.data.repository.ScryFallStateRepository
-import com.project.catalogingmtgcards.data.response.CardResponse
-import com.project.catalogingmtgcards.data.response.SymbologyManaCostResponse
+import com.project.catalogingmtgcards.data.repository.SimbolRepository
+import com.project.catalogingmtgcards.data.repository.StateSimbolRepository
+import com.project.catalogingmtgcards.data.response.CardResponseDto
+import com.project.catalogingmtgcards.data.response.SymbologyManaCostResponseDto
 import com.project.catalogingmtgcards.data.service.ScryfallService
 import com.project.catalogingmtgcards.domain.ScryFallStateUseCase
 
-class GetSymbolManaCostUseCaseImpl(private val repository: ScryFallRepository,
+class GetSymbolManaCostUseCaseImpl(private val repository: SimbolRepository,
                                    private val service: ScryfallService): GetSymbolManaCostUseCase {
 
-    override suspend fun getSymbolManaCost(symbolsManaCost: List<CardResponse>): ScryFallStateUseCase {
+    override suspend fun getSymbolManaCost(symbolsManaCost: List<CardResponseDto>): ScryFallStateUseCase {
         val responseSymbols = service.getSymbologyManaCost()
         return when(repository.getSymbolManaCost()) {
-            ScryFallStateRepository.Success(
-                data = null,
+            StateSimbolRepository.Success(
                 manaCost =  responseSymbols.body()) -> {
                 val mapUri = responseSymbols.body()?.let { mapSymbolWithUri(it.dataSymbolsList) }
 
@@ -27,7 +26,7 @@ class GetSymbolManaCostUseCaseImpl(private val repository: ScryFallRepository,
         }
     }
 
-    private fun mapSymbolWithUri(listSymbols: List<SymbologyManaCostResponse>): Map<String, String> {
+    private fun mapSymbolWithUri(listSymbols: List<SymbologyManaCostResponseDto>): Map<String, String> {
         val map = mutableMapOf<String, String>()
         for (item in listSymbols) {
             map.getOrPut(item.symbol){item.svgUri}
@@ -35,7 +34,7 @@ class GetSymbolManaCostUseCaseImpl(private val repository: ScryFallRepository,
         return map
     }
 
-    private fun createListUri(listCards: List<CardResponse>, mapManaCostUrl: Map<String, String>):List<List<String>> {
+    private fun createListUri(listCards: List<CardResponseDto>, mapManaCostUrl: Map<String, String>):List<List<String>> {
         var manaCostListPerCard = mutableListOf<String>()
         var cardsListMana = mutableListOf<List<String>>()
         for (manaCostPerCard in listCards) {

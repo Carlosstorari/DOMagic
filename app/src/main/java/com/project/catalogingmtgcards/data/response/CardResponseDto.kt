@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class CardResponse(
+data class CardResponseDto(
     @SerializedName("name") val name: String,
     @SerializedName("type_line") val typeLine: String,
     @SerializedName("mana_cost") val manaCost: String,

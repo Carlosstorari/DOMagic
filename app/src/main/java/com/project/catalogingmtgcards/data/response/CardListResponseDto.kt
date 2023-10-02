@@ -2,6 +2,6 @@ package com.project.catalogingmtgcards.data.response
 
 import kotlinx.serialization.SerialName
 
-data class CardListResponse(
-@SerialName("data") val data: List<CardResponse>
+data class CardListResponseDto(
+@SerialName("data") val data: List<CardResponseDto>
 )

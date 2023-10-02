@@ -2,11 +2,9 @@ package com.project.catalogingmtgcards.presentation.ui
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.project.catalogingmtgcards.data.response.CardResponse
 import com.project.catalogingmtgcards.databinding.ActivityMainBinding
 import com.project.catalogingmtgcards.domain.model.Card
 import com.project.catalogingmtgcards.presentation.adapter.ListaCardsAdapter

@@ -16,7 +16,7 @@ class ListaCardsAdapter(
 
     class ViewHolder(private val binding: CardListItemBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bindCard(card:Card) {
+        fun bindCard(card: Card) {
             binding.apply {
                 cardName.text = card.name
                 cardColor.text = card.typeLine

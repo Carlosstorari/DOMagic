@@ -1,11 +1,10 @@
 package com.project.catalogingmtgcards.domain
 
-import com.project.catalogingmtgcards.data.response.CardListResponse
-import com.project.catalogingmtgcards.data.response.SymbologyManaCostResponse
+import com.project.catalogingmtgcards.data.response.CardListResponseDto
 
 sealed class ScryFallStateUseCase {
     data class Success(
-        val card: CardListResponse?,
+        val card: CardListResponseDto?,
         val symbologyMana: List<List<String>>?): ScryFallStateUseCase()
     object Error: ScryFallStateUseCase()// é object pq nao é passado parametro
     object Empty: ScryFallStateUseCase()

@@ -1,7 +1,9 @@
 package com.project.catalogingmtgcards.data.di
 
-import com.project.catalogingmtgcards.data.repository.ScryFallRepository
-import com.project.catalogingmtgcards.data.repository.ScryFallRepositoryImpl
+import com.project.catalogingmtgcards.data.repository.CardRepository
+import com.project.catalogingmtgcards.data.repository.CardRepositoryImpl
+import com.project.catalogingmtgcards.data.repository.SimbolRepository
+import com.project.catalogingmtgcards.data.repository.SimbolRepositoryImpl
 import com.project.catalogingmtgcards.data.service.ScryfallService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -36,6 +38,7 @@ object DataModule {
     }
 
     private val repositoryModule = module {
-        single<ScryFallRepository> { ScryFallRepositoryImpl(get()) }
+        single<CardRepository> { CardRepositoryImpl(get()) }
+        single<SimbolRepository> { SimbolRepositoryImpl(get()) }
     }
 }
