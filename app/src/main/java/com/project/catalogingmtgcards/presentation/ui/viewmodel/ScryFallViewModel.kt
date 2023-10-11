@@ -1,6 +1,7 @@
 package com.project.catalogingmtgcards.presentation.ui.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -50,13 +51,16 @@ class ScryFallViewModel(
         var cardList = mutableListOf<Card>()
 
         listCard.forEachIndexed { index, cardResponse ->
-            cardList.add(
-                Card(
-                    name = cardResponse.name,
-                    typeLine = cardResponse.typeLine,
-                    listUrlManaCost = manaCostList?.get(index)
+            cardResponse.imageCard?.let{
+                cardList.add(
+                    Card(
+                        imgCard = it.artCrop,
+                        name = cardResponse.name,
+                        typeLine = cardResponse.typeLine,
+                        listUrlManaCost = manaCostList?.get(index)
+                    )
                 )
-            )
+            }
 
         }
         return cardList
