@@ -3,4 +3,7 @@
     <declare-styleable name="MainCardImage">
         <attr name="image_uri" format="string"/>
     </declare-styleable>
+    <declare-styleable name="ManaValueContainer">
+        <attr name="list_uri" format="reference"/>
+    </declare-styleable>
 </resources>

@@ -3,7 +3,6 @@ package com.project.catalogingmtgcards.presentation.ui
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.catalogingmtgcards.databinding.ActivityMainBinding
 import com.project.catalogingmtgcards.domain.model.Card
@@ -21,17 +20,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         viewModel.getCardListItem()
-        viewModel.getState.observe(this, Observer {
-            when(it) {
+        viewModel.getState.observe(this) {
+            when (it) {
                 is ScryFallViewModelState.Success -> {
                     setupRecyclerView(it.card)
                     Log.d("cardList", it.card.toString())
-
                 }
 
-                else -> {Log.d("e", "Errorrrrr")}
+                else -> {
+                    Log.d("e", "Errorrrrr")
+                }
             }
-        })
+        }
     }
 
     private fun setupRecyclerView(list: List<Card>) {
