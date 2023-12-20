@@ -31,7 +31,7 @@ class ManaValueContainer @JvmOverloads constructor(
                 val image = ImageView(context)
                 image.layoutParams = LinearLayout.LayoutParams(50, 50)
                 val l = image.layoutParams as LinearLayout.LayoutParams
-                l.setMargins(10, 5, 15, 25)
+                l.setMargins(10, 5, 20, 25)
                 image.x = 20F
                 image.y = 20F
                 image.load(uri) {
