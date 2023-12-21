@@ -13,4 +13,7 @@
     <color name="font_color_card">#E6E0E9</color>
     <color name="font_color_fab">#EADDFF</color>
     <color name="color_fab">#4F378B</color>
+    <color name="background_color_navbar">#2D2F33</color>
+    <color name="ic_item_color_navbar">#C4C7C5</color>
+    <color name="ic_item_color_navbar_selected">#C2E7FF</color>
 </resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.BottomView" parent="Widget.MaterialComponents.BottomNavigationView.PrimarySurface">
+        <item name="itemIconTint">@drawable/item_selector</item>
+        <item name="itemTextColor">@color/ic_item_color_navbar</item>
+        <item name="android:background">@color/background_color_navbar</item>
+    </style>
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">#9B51E0</item>
+    </style>
+</resources>
