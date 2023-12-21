@@ -8,10 +8,18 @@
         android:id="@+id/createdDecksFragment"
         android:name="com.project.catalogingmtgcards.presentation.ui.fragments.CreatedDecksFragment"
         android:label="fragment_created_decks"
-        tools:layout="@layout/fragment_created_decks" />
+        tools:layout="@layout/fragment_created_decks" >
+        <action
+            android:id="@+id/action_createdDecksFragment_to_searchCardFragment"
+            app:destination="@id/searchCardFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchCardFragment"
         android:name="com.project.catalogingmtgcards.presentation.ui.fragments.SearchCardFragment"
         android:label="fragment_search_card"
-        tools:layout="@layout/fragment_search_card" />
+        tools:layout="@layout/fragment_search_card" >
+        <action
+            android:id="@+id/action_searchCardFragment_to_createdDecksFragment"
+            app:destination="@id/createdDecksFragment" />
+    </fragment>
 </navigation>
