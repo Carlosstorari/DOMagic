@@ -6,6 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.ui.fragments.SearchCardFragment"
     android:background="@color/grey_900">
+    <Button
+        android:id="@+id/openPopUp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="teste"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/card_list_home"
@@ -14,7 +22,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/openPopUp"
         tools:listitem="@layout/card_list_item"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

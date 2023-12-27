@@ -6,5 +6,5 @@ import com.project.catalogingmtgcards.domain.ScryFallStateUseCase
 //Se retornar Success converte o response em model
 
 interface GetCardByColorUseCase {
-    suspend fun getListCardByColorUseCase(colorCardName: String): ScryFallStateUseCase
+    suspend fun getListCardUseCase(colorCardName: String): ScryFallStateUseCase
 }

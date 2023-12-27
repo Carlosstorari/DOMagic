@@ -23,12 +23,18 @@ class SearchCardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSearchCardBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getCardListItem()
+        binding.openPopUp.setOnClickListener {
+            DialogFilterColor(requireActivity()).showDialog { query ->
+                viewModel.getCardListItem(query)
+            }
+        }
         viewModel.getState.observe(viewLifecycleOwner) {
             when (it) {
                 is ScryFallViewModelState.Success -> {

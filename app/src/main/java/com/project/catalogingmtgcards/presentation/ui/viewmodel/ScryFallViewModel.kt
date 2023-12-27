@@ -1,7 +1,6 @@
 package com.project.catalogingmtgcards.presentation.ui.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,6 +10,7 @@ import com.project.catalogingmtgcards.domain.ScryFallStateUseCase
 import com.project.catalogingmtgcards.domain.model.Card
 import com.project.catalogingmtgcards.domain.useCase.GetCardByColorUseCase
 import com.project.catalogingmtgcards.domain.useCase.GetSymbolManaCostUseCase
+import com.project.catalogingmtgcards.presentation.ui.fragments.SearchConstants.ONLY_RED
 import kotlinx.coroutines.launch
 
 class ScryFallViewModel(
@@ -23,10 +23,9 @@ class ScryFallViewModel(
     private val state: MutableLiveData<ScryFallViewModelState> = MutableLiveData()
     val getState: LiveData<ScryFallViewModelState> = state
 
-
-    fun getCardListItem() {
+    fun getCardListItem(searchQuery: String = ONLY_RED) {
         viewModelScope.launch {
-            val useCaseGetCardsList = useCase.getListCardByColorUseCase("color:red cmc=3")
+            val useCaseGetCardsList = useCase.getListCardUseCase(searchQuery)
             if (useCaseGetCardsList is ScryFallStateUseCase.Success) {
                 val useCaseGetManaCostSymbol =
                     useCaseGetCardsList.card?.let { useCaseSymbol.getSymbolManaCost(it.data) }
@@ -49,7 +48,6 @@ class ScryFallViewModel(
         manaCostList: List<List<String>>?
     ): List<Card> {
         var cardList = mutableListOf<Card>()
-
         listCard.forEachIndexed { index, cardResponse ->
             cardResponse.imageCard?.let{
                 cardList.add(
