@@ -30,7 +30,7 @@ class SearchCardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getCardListItem()
-        binding.openPopUp.setOnClickListener {
+        binding.btnFilterByColor.setOnClickListener {
             DialogFilterColor(requireActivity()).showDialog { query ->
                 viewModel.getCardListItem(query)
                 binding.shimmerSearchView.visibility = View.VISIBLE

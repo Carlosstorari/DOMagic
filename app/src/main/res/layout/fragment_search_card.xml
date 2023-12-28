@@ -25,24 +25,80 @@
         </LinearLayout>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
-
-    <Button
-        android:id="@+id/openPopUp"
+<LinearLayout
+    android:id="@+id/group_btn_filter"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:orientation="horizontal">
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_filter_by_color"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="teste"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="35dp"
+        android:padding="10dp"
+        android:text="cor"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/purple"
+        android:background="@drawable/button_shape" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_filter_by_mana_value"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:padding="10dp"
+        android:text="valor de mana"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/purple"
+        android:background="@drawable/button_shape" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_filter_by_type"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:padding="10dp"
+        android:text="tipo"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/purple"
+        android:background="@drawable/button_shape" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_filter_by_edition"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:padding="10dp"
+        android:text="edição"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/purple"
+        android:background="@drawable/button_shape" />
+
+</LinearLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/group_btn_filter"
+        android:hint="Pesquisar"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        app:startIconTint="@drawable/change_start_icon_color"
+        app:startIconDrawable="@drawable/ic_search"
+        style="@style/SearchTextInputLayoutStyle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/card_list_home"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/openPopUp"
+        app:layout_constraintTop_toBottomOf="@id/outlinedTextField"
         tools:listitem="@layout/card_list_item" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
