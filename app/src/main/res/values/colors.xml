@@ -16,4 +16,5 @@
     <color name="background_color_navbar">#2D2F33</color>
     <color name="ic_item_color_navbar">#C4C7C5</color>
     <color name="ic_item_color_navbar_selected">#C2E7FF</color>
+    <color name="shimmer_color">#C2C2C2</color>
 </resources>

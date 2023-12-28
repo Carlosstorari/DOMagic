@@ -33,13 +33,19 @@ class SearchCardFragment : Fragment() {
         binding.openPopUp.setOnClickListener {
             DialogFilterColor(requireActivity()).showDialog { query ->
                 viewModel.getCardListItem(query)
+                binding.shimmerSearchView.visibility = View.VISIBLE
+                binding.cardListHome.visibility = View.GONE
             }
         }
         viewModel.getState.observe(viewLifecycleOwner) {
             when (it) {
                 is ScryFallViewModelState.Success -> {
                     setupRecyclerView(it.card)
-                    Log.d("cardList", it.card.toString())
+                    binding.shimmerSearchView.visibility = View.GONE
+                    binding.cardListHome.visibility = View.VISIBLE
+                }
+                is ScryFallViewModelState.Loading -> {
+                    binding.shimmerSearchView.visibility = View.VISIBLE
                 }
 
                 else -> {

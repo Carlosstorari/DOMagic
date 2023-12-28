@@ -25,10 +25,15 @@ class ScryFallViewModel(
 
     fun getCardListItem(searchQuery: String = ONLY_RED) {
         viewModelScope.launch {
+
             val useCaseGetCardsList = useCase.getListCardUseCase(searchQuery)
+            state.postValue(ScryFallViewModelState.Loading)
+
             if (useCaseGetCardsList is ScryFallStateUseCase.Success) {
+
                 val useCaseGetManaCostSymbol =
                     useCaseGetCardsList.card?.let { useCaseSymbol.getSymbolManaCost(it.data) }
+
                 if (useCaseGetManaCostSymbol is ScryFallStateUseCase.Success) {
                     state.postValue(
                         ScryFallViewModelState.Success(
