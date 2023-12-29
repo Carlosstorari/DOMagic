@@ -13,4 +13,9 @@
     <string name="extended_fab_content_desc">novo deck</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="radio_btn_opt_white">Branco</string>
+    <string name="radio_btn_opt_red">Vermelho</string>
+    <string name="radio_btn_opt_green">Verde</string>
+    <string name="radio_btn_opt_blue">Azul</string>
+    <string name="radio_btn_opt_black">Preto</string>
 </resources>

@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_card_item"
     tools:context=".presentation.ui.fragments.DialogFilterColor">
     <RadioGroup
         android:id="@+id/filter_radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:layout_margin="10dp">
         <RadioButton
             android:id="@+id/btn_radio_white"
             android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:layout_margin="4dp"
             android:layoutDirection="rtl"
             android:textAlignment="textStart"
-            android:text="Branco"
+            android:text="@string/radio_btn_opt_white"
             android:buttonTint="@color/purple"
             android:textColor="@color/font_color_card"
             android:textSize="14sp" />
@@ -28,7 +28,7 @@
             android:layout_margin="4dp"
             android:layoutDirection="rtl"
             android:textAlignment="textStart"
-            android:text="Vermelho"
+            android:text="@string/radio_btn_opt_red"
             android:buttonTint="@color/purple"
             android:textColor="@color/font_color_card"
             android:textSize="14sp" />
@@ -39,7 +39,7 @@
             android:layout_margin="4dp"
             android:layoutDirection="rtl"
             android:textAlignment="textStart"
-            android:text="Verde"
+            android:text="@string/radio_btn_opt_green"
             android:buttonTint="@color/purple"
             android:textColor="@color/font_color_card"
             android:textSize="14sp" />
@@ -50,7 +50,7 @@
             android:layout_margin="4dp"
             android:layoutDirection="rtl"
             android:textAlignment="textStart"
-            android:text="Azul"
+            android:text="@string/radio_btn_opt_blue"
             android:buttonTint="@color/purple"
             android:textColor="@color/font_color_card"
             android:textSize="14sp" />
@@ -61,7 +61,7 @@
             android:layout_margin="4dp"
             android:layoutDirection="rtl"
             android:textAlignment="textStart"
-            android:text="Preto"
+            android:text="@string/radio_btn_opt_black"
             android:buttonTint="@color/purple"
             android:textColor="@color/font_color_card"
             android:textSize="14sp" />

@@ -3,7 +3,6 @@ package com.project.catalogingmtgcards.presentation.ui.fragments
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
 import com.project.catalogingmtgcards.R
@@ -18,12 +17,17 @@ class DialogFilterColor(private val context: Context) {
 
     fun showDialog(whenConfirmIsClicked: (query: String) -> Unit) {
         DialogFilterColorBinding.inflate(LayoutInflater.from(context)).apply {
+
             AlertDialog.Builder(context)
                 .setView(root)
                 .setPositiveButton("Confirmar") { _, _ ->
                     val query = onRadioButtonClicked(filterRadioGroup)
                     whenConfirmIsClicked(query)
                 }.show()
+                .window?.setLayout(
+                    (context.resources.displayMetrics.widthPixels * 0.7).toInt(),
+                    (context.resources.displayMetrics.heightPixels * 0.45).toInt()
+                )
         }
     }
 
