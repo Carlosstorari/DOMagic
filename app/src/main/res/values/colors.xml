@@ -19,5 +19,6 @@
     <color name="shimmer_color">#C2C2C2</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#938F99</color>
     <color name="ic_filter_input">#938F99</color>
+    <color name="hint_text_color">#E6E0E9</color>
 
 </resources>

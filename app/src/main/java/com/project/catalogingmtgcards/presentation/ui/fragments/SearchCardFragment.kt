@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.project.catalogingmtgcards.R
 import com.project.catalogingmtgcards.databinding.FragmentSearchCardBinding
 import com.project.catalogingmtgcards.domain.model.Card
 import com.project.catalogingmtgcards.presentation.adapter.ListaCardsAdapter
@@ -23,7 +25,7 @@ class SearchCardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSearchCardBinding.inflate(inflater, container, false)
-
+        val searchView = binding.inputSearchCard
         return binding.root
     }
 
@@ -44,6 +46,7 @@ class SearchCardFragment : Fragment() {
                     binding.shimmerSearchView.visibility = View.GONE
                     binding.cardListHome.visibility = View.VISIBLE
                 }
+
                 is ScryFallViewModelState.Loading -> {
                     binding.shimmerSearchView.visibility = View.VISIBLE
                 }
