@@ -1,20 +1,15 @@
 package com.project.catalogingmtgcards.data.repository
 
-import com.project.catalogingmtgcards.data.response.ListSymbolsResponseDto
 import com.project.catalogingmtgcards.data.service.ScryfallService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import java.net.ConnectException
 
-sealed class StateSimbolRepository {
-    data class Success(val manaCost: ListSymbolsResponseDto?) : StateSimbolRepository()
-    data class Error(val exception: Exception) : StateSimbolRepository()
-}
 
 class SimbolRepositoryImpl(
     private val service: ScryfallService
-): SimbolRepository {
+) : SimbolRepository {
 
     override suspend fun getSymbolManaCost(): StateSimbolRepository {
         return withContext(Dispatchers.IO) {

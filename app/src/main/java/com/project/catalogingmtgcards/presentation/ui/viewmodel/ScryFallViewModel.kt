@@ -1,6 +1,7 @@
 package com.project.catalogingmtgcards.presentation.ui.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,14 +10,18 @@ import com.project.catalogingmtgcards.data.response.CardResponseDto
 import com.project.catalogingmtgcards.domain.ScryFallStateUseCase
 import com.project.catalogingmtgcards.domain.model.Card
 import com.project.catalogingmtgcards.domain.useCase.GetCardByColorUseCase
+import com.project.catalogingmtgcards.domain.useCase.GetCardByNameUseCase
+import com.project.catalogingmtgcards.domain.useCase.GetListNameCardAutocompleteUseCase
 import com.project.catalogingmtgcards.domain.useCase.GetSymbolManaCostUseCase
 import com.project.catalogingmtgcards.presentation.ui.fragments.SearchConstants.ONLY_RED
 import kotlinx.coroutines.launch
 
 class ScryFallViewModel(
     application: Application,
-    private val useCase: GetCardByColorUseCase,
-    private val useCaseSymbol: GetSymbolManaCostUseCase
+    private val useCaseListCard: GetCardByColorUseCase,
+    private val useCaseSymbol: GetSymbolManaCostUseCase,
+    private val useCaseAutocomplete: GetListNameCardAutocompleteUseCase,
+    private val useCaseCardNamed: GetCardByNameUseCase
 ) : AndroidViewModel(application) {
     private val context = getApplication<Application>().applicationContext
 
@@ -26,19 +31,50 @@ class ScryFallViewModel(
     fun getCardListItem(searchQuery: String = ONLY_RED) {
         viewModelScope.launch {
 
-            val useCaseGetCardsList = useCase.getListCardUseCase(searchQuery)
+            val useCaseGetCardsList = useCaseListCard.getListCardUseCase(searchQuery)
             state.postValue(ScryFallViewModelState.Loading)
 
             if (useCaseGetCardsList is ScryFallStateUseCase.Success) {
 
                 val useCaseGetManaCostSymbol =
-                    useCaseGetCardsList.card?.let { useCaseSymbol.getSymbolManaCost(it.data) }
+                    useCaseGetCardsList.listCard?.let { useCaseSymbol.getSymbolManaCost(it.data) }
 
                 if (useCaseGetManaCostSymbol is ScryFallStateUseCase.Success) {
                     state.postValue(
                         ScryFallViewModelState.Success(
                             createListCard(
-                                useCaseGetCardsList.card.data,
+                                useCaseGetCardsList.listCard.data,
+                                useCaseGetManaCostSymbol.symbologyMana
+                            )
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    fun getCardListItemAutocomplete(query: String?) {
+        viewModelScope.launch {
+            var listAutocomplete: MutableList<CardResponseDto> = mutableListOf()
+            val useCaseAutocomplete = query?.let { useCaseAutocomplete.getListAutocomplete(it) }
+            if (useCaseAutocomplete is ScryFallStateUseCase.Success) {
+                useCaseAutocomplete.listNameAutocomplete?.data?.forEach { name->
+                    val useCaseCardNamed = useCaseCardNamed.getCardByName(name)
+                    state.postValue(ScryFallViewModelState.Loading)
+                    if (useCaseCardNamed is ScryFallStateUseCase.Success) {
+                        useCaseCardNamed.cardNamed?.let {listAutocomplete.add(it)}
+
+                    }
+                }
+                Log.d("autoCompleteCards", listAutocomplete.toString())
+                val useCaseGetManaCostSymbol =
+                    listAutocomplete?.let { useCaseSymbol.getSymbolManaCost(it) }
+
+                if (useCaseGetManaCostSymbol is ScryFallStateUseCase.Success) {
+                    state.postValue(
+                        ScryFallViewModelState.Success(
+                            createListCard(
+                                listAutocomplete,
                                 useCaseGetManaCostSymbol.symbologyMana
                             )
                         )
@@ -54,7 +90,7 @@ class ScryFallViewModel(
     ): List<Card> {
         var cardList = mutableListOf<Card>()
         listCard.forEachIndexed { index, cardResponse ->
-            cardResponse.imageCard?.let{
+            cardResponse.imageCard?.let {
                 cardList.add(
                     Card(
                         imgCard = it.artCrop,

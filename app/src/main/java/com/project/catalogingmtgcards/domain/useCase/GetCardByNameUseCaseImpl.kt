@@ -1,21 +1,20 @@
 package com.project.catalogingmtgcards.domain.useCase
 
-import com.project.catalogingmtgcards.data.repository.CardRepository
+import com.project.catalogingmtgcards.data.repository.GetCardByNameRepository
 import com.project.catalogingmtgcards.data.repository.StateCardRepository
 import com.project.catalogingmtgcards.data.service.ScryfallService
 import com.project.catalogingmtgcards.domain.ScryFallStateUseCase
 
-class GetCardUseCaseImpl(
-    private val repository: CardRepository,
+class GetCardByNameUseCaseImpl(
+    private val repository: GetCardByNameRepository,
     private val service: ScryfallService
-) : GetCardByColorUseCase {
-
-    override suspend fun getListCardUseCase(colorCardName: String): ScryFallStateUseCase {
-        val response = service.getListCards(colorCardName)
+): GetCardByNameUseCase {
+    override suspend fun getCardByName(name: String): ScryFallStateUseCase {
+        val response = service.getCardByName(name)
         //Repository retorna um ScryFallStateRepository do tipo Success ou Error
-        return when (repository.getListCardByColor(colorCardName)) {
-            StateCardRepository.Success(dataListCard = response.body()) -> {
-                ScryFallStateUseCase.Success(listCard = response.body())
+        return when (repository.getCardByName(name)) {
+            StateCardRepository.Success(dataNamedCard = response.body()) -> {
+                ScryFallStateUseCase.Success(cardNamed = response.body())
             }
 
             StateCardRepository.Error(exception = Exception("Falha ao buscar card")) -> {
@@ -26,6 +25,5 @@ class GetCardUseCaseImpl(
                 ScryFallStateUseCase.Empty
             }
         }
-
     }
 }

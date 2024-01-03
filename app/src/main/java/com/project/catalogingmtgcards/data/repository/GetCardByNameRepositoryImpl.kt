@@ -2,18 +2,16 @@ package com.project.catalogingmtgcards.data.repository
 
 import com.project.catalogingmtgcards.data.service.ScryfallService
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import java.net.ConnectException
 
-class CardRepositoryImpl(
+class GetCardByNameRepositoryImpl(
     private val service: ScryfallService
-) : CardRepository {
-
-    override suspend fun getListCardByColor(colorCardName: String): StateCardRepository {
+) :GetCardByNameRepository {
+    override suspend fun getCardByName(name: String): StateCardRepository {
         return withContext(Dispatchers.IO) {
             try {
-                callGetListCard(colorCardName)
+                callGetListCard(name)
             } catch (e: ConnectException) {
                 StateCardRepository.Error(exception = Exception("Falha na comunicação com API"))
             } catch (e: Exception) {
@@ -23,9 +21,9 @@ class CardRepositoryImpl(
     }
 
     private suspend fun callGetListCard(cardName: String): StateCardRepository {
-        val response = service.getListCards(cardName)
+        val response = service.getCardByName(cardName)
         return if (response.isSuccessful) {
-            StateCardRepository.Success(dataListCard = response.body())
+            StateCardRepository.Success(dataNamedCard = response.body())
         } else {
             StateCardRepository.Error(exception = Exception("Falha ao buscar card"))
         }
