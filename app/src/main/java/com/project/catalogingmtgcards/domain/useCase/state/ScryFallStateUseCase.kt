@@ -1,4 +1,4 @@
-package com.project.catalogingmtgcards.domain
+package com.project.catalogingmtgcards.domain.useCase.state
 
 import com.project.catalogingmtgcards.data.response.CardListAutocompleteString
 import com.project.catalogingmtgcards.data.response.CardListResponseDto

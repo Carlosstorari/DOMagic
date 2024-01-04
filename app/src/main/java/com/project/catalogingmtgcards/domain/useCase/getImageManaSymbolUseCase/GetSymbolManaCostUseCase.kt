@@ -1,7 +1,7 @@
-package com.project.catalogingmtgcards.domain.useCase
+package com.project.catalogingmtgcards.domain.useCase.getImageManaSymbolUseCase
 
 import com.project.catalogingmtgcards.data.response.CardResponseDto
-import com.project.catalogingmtgcards.domain.ScryFallStateUseCase
+import com.project.catalogingmtgcards.domain.useCase.state.ScryFallStateUseCase
 
 interface GetSymbolManaCostUseCase {
 

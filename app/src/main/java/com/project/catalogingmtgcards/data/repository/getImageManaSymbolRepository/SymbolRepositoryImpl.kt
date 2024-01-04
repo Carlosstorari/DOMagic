@@ -1,5 +1,6 @@
-package com.project.catalogingmtgcards.data.repository
+package com.project.catalogingmtgcards.data.repository.getImageManaSymbolRepository
 
+import com.project.catalogingmtgcards.data.repository.state.StateSimbolRepository
 import com.project.catalogingmtgcards.data.service.ScryfallService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -7,9 +8,9 @@ import kotlinx.coroutines.withContext
 import java.net.ConnectException
 
 
-class SimbolRepositoryImpl(
+class SymbolRepositoryImpl(
     private val service: ScryfallService
-) : SimbolRepository {
+) : SymbolRepository {
 
     override suspend fun getSymbolManaCost(): StateSimbolRepository {
         return withContext(Dispatchers.IO) {

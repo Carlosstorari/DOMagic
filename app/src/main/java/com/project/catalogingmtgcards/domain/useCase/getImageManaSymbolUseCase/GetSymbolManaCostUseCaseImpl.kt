@@ -1,15 +1,15 @@
-package com.project.catalogingmtgcards.domain.useCase
+package com.project.catalogingmtgcards.domain.useCase.getImageManaSymbolUseCase
 
 import android.util.Log
-import com.project.catalogingmtgcards.data.repository.SimbolRepository
-import com.project.catalogingmtgcards.data.repository.StateSimbolRepository
+import com.project.catalogingmtgcards.data.repository.getImageManaSymbolRepository.SymbolRepository
+import com.project.catalogingmtgcards.data.repository.state.StateSimbolRepository
 import com.project.catalogingmtgcards.data.response.CardResponseDto
 import com.project.catalogingmtgcards.data.response.SymbologyManaCostResponseDto
 import com.project.catalogingmtgcards.data.service.ScryfallService
-import com.project.catalogingmtgcards.domain.ScryFallStateUseCase
+import com.project.catalogingmtgcards.domain.useCase.state.ScryFallStateUseCase
 
 class GetSymbolManaCostUseCaseImpl(
-    private val repository: SimbolRepository,
+    private val repository: SymbolRepository,
     private val service: ScryfallService
 ) : GetSymbolManaCostUseCase {
 

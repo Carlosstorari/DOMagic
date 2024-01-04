@@ -1,9 +1,9 @@
-package com.project.catalogingmtgcards.domain.useCase
+package com.project.catalogingmtgcards.domain.useCase.getCardByNameRepository
 
-import com.project.catalogingmtgcards.data.repository.GetCardByNameRepository
-import com.project.catalogingmtgcards.data.repository.StateCardRepository
+import com.project.catalogingmtgcards.data.repository.getCardByNameRepository.GetCardByNameRepository
+import com.project.catalogingmtgcards.data.repository.state.StateCardRepository
 import com.project.catalogingmtgcards.data.service.ScryfallService
-import com.project.catalogingmtgcards.domain.ScryFallStateUseCase
+import com.project.catalogingmtgcards.domain.useCase.state.ScryFallStateUseCase
 
 class GetCardByNameUseCaseImpl(
     private val repository: GetCardByNameRepository,
@@ -11,7 +11,6 @@ class GetCardByNameUseCaseImpl(
 ): GetCardByNameUseCase {
     override suspend fun getCardByName(name: String): ScryFallStateUseCase {
         val response = service.getCardByName(name)
-        //Repository retorna um ScryFallStateRepository do tipo Success ou Error
         return when (repository.getCardByName(name)) {
             StateCardRepository.Success(dataNamedCard = response.body()) -> {
                 ScryFallStateUseCase.Success(cardNamed = response.body())

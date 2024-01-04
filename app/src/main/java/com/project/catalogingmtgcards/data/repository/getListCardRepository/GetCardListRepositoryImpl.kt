@@ -1,14 +1,14 @@
-package com.project.catalogingmtgcards.data.repository
+package com.project.catalogingmtgcards.data.repository.getListCardRepository
 
+import com.project.catalogingmtgcards.data.repository.state.StateCardRepository
 import com.project.catalogingmtgcards.data.service.ScryfallService
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import java.net.ConnectException
 
-class CardRepositoryImpl(
+class GetCardListRepositoryImpl(
     private val service: ScryfallService
-) : CardRepository {
+) : GetCardListRepository {
 
     override suspend fun getListCardByColor(colorCardName: String): StateCardRepository {
         return withContext(Dispatchers.IO) {

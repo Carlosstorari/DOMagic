@@ -1,4 +1,4 @@
-package com.project.catalogingmtgcards.data.repository
+package com.project.catalogingmtgcards.data.repository.state
 
 import com.project.catalogingmtgcards.data.response.CardListAutocompleteString
 import com.project.catalogingmtgcards.data.response.CardListResponseDto

@@ -1,13 +1,13 @@
 package com.project.catalogingmtgcards.data.di
 
-import com.project.catalogingmtgcards.data.repository.AutocompleteSearchRepository
-import com.project.catalogingmtgcards.data.repository.AutocompleteSearchRepositoryImpl
-import com.project.catalogingmtgcards.data.repository.CardRepository
-import com.project.catalogingmtgcards.data.repository.CardRepositoryImpl
-import com.project.catalogingmtgcards.data.repository.GetCardByNameRepository
-import com.project.catalogingmtgcards.data.repository.GetCardByNameRepositoryImpl
-import com.project.catalogingmtgcards.data.repository.SimbolRepository
-import com.project.catalogingmtgcards.data.repository.SimbolRepositoryImpl
+import com.project.catalogingmtgcards.data.repository.autocompleteSearchRepository.AutocompleteSearchRepository
+import com.project.catalogingmtgcards.data.repository.autocompleteSearchRepository.AutocompleteSearchRepositoryImpl
+import com.project.catalogingmtgcards.data.repository.getListCardRepository.GetCardListRepository
+import com.project.catalogingmtgcards.data.repository.getListCardRepository.GetCardListRepositoryImpl
+import com.project.catalogingmtgcards.data.repository.getCardByNameRepository.GetCardByNameRepository
+import com.project.catalogingmtgcards.data.repository.getCardByNameRepository.GetCardByNameRepositoryImpl
+import com.project.catalogingmtgcards.data.repository.getImageManaSymbolRepository.SymbolRepository
+import com.project.catalogingmtgcards.data.repository.getImageManaSymbolRepository.SymbolRepositoryImpl
 import com.project.catalogingmtgcards.data.service.ScryfallService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -42,8 +42,8 @@ object DataModule {
     }
 
     private val repositoryModule = module {
-        single<CardRepository> { CardRepositoryImpl(get()) }
-        single<SimbolRepository> { SimbolRepositoryImpl(get()) }
+        single<GetCardListRepository> { GetCardListRepositoryImpl(get()) }
+        single<SymbolRepository> { SymbolRepositoryImpl(get()) }
         single<AutocompleteSearchRepository> { AutocompleteSearchRepositoryImpl(get()) }
         single <GetCardByNameRepository>{ GetCardByNameRepositoryImpl(get()) }
     }

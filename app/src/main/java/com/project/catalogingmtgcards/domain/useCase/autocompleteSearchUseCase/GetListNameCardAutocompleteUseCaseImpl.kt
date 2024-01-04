@@ -1,9 +1,9 @@
-package com.project.catalogingmtgcards.domain.useCase
+package com.project.catalogingmtgcards.domain.useCase.autocompleteSearchUseCase
 
-import com.project.catalogingmtgcards.data.repository.AutocompleteSearchRepository
-import com.project.catalogingmtgcards.data.repository.StateCardRepository
+import com.project.catalogingmtgcards.data.repository.autocompleteSearchRepository.AutocompleteSearchRepository
+import com.project.catalogingmtgcards.data.repository.state.StateCardRepository
 import com.project.catalogingmtgcards.data.service.ScryfallService
-import com.project.catalogingmtgcards.domain.ScryFallStateUseCase
+import com.project.catalogingmtgcards.domain.useCase.state.ScryFallStateUseCase
 
 class GetListNameCardAutocompleteUseCaseImpl(
     private val repository: AutocompleteSearchRepository,
@@ -11,7 +11,6 @@ class GetListNameCardAutocompleteUseCaseImpl(
 ): GetListNameCardAutocompleteUseCase {
     override suspend fun getListAutocomplete(query: String): ScryFallStateUseCase {
         val response = service.getListCardsAutoComplete(query)
-        //Repository retorna um ScryFallStateRepository do tipo Success ou Error
         return when (repository.getListCardAutocomplete(query)) {
             StateCardRepository.Success(dataListCardNameAutocomplete = response.body()) -> {
                 ScryFallStateUseCase.Success(listNameAutocomplete = response.body())

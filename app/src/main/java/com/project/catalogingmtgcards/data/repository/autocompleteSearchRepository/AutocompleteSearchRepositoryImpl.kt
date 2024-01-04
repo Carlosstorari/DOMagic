@@ -1,17 +1,17 @@
-package com.project.catalogingmtgcards.data.repository
+package com.project.catalogingmtgcards.data.repository.autocompleteSearchRepository
 
+import com.project.catalogingmtgcards.data.repository.state.StateCardRepository
 import com.project.catalogingmtgcards.data.service.ScryfallService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.net.ConnectException
 
-class GetCardByNameRepositoryImpl(
-    private val service: ScryfallService
-) :GetCardByNameRepository {
-    override suspend fun getCardByName(name: String): StateCardRepository {
+class AutocompleteSearchRepositoryImpl(private val service: ScryfallService):
+    AutocompleteSearchRepository {
+    override suspend fun getListCardAutocomplete(query: String): StateCardRepository {
         return withContext(Dispatchers.IO) {
             try {
-                callGetListCard(name)
+                callCardNameList(query)
             } catch (e: ConnectException) {
                 StateCardRepository.Error(exception = Exception("Falha na comunicação com API"))
             } catch (e: Exception) {
@@ -20,12 +20,13 @@ class GetCardByNameRepositoryImpl(
         }
     }
 
-    private suspend fun callGetListCard(cardName: String): StateCardRepository {
-        val response = service.getCardByName(cardName)
+    private suspend fun callCardNameList(cardName: String): StateCardRepository {
+        val response = service.getListCardsAutoComplete(cardName)
         return if (response.isSuccessful) {
-            StateCardRepository.Success(dataNamedCard = response.body())
+            StateCardRepository.Success(dataListCardNameAutocomplete = response.body())
         } else {
             StateCardRepository.Error(exception = Exception("Falha ao buscar card"))
         }
     }
+
 }
