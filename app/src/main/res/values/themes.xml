@@ -38,6 +38,12 @@
         <item name="android:textColorHint">@color/font_color_card</item>
     </style>
 
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/input_text_color</item>
+        <item name="hintTextColor">@color/input_text_color</item>
+        <item name="android:textColorHint">@color/ic_filter_input</item>
+    </style>
+
     <style name="Theme.CatalogingMtgCards.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.CatalogingMtgCards.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
