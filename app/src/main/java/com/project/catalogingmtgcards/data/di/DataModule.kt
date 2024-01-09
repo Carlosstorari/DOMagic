@@ -1,5 +1,11 @@
 package com.project.catalogingmtgcards.data.di
 
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.project.catalogingmtgcards.data.repository.FirebaseAuthRepository
 import com.project.catalogingmtgcards.data.repository.autocompleteSearchRepository.AutocompleteSearchRepository
 import com.project.catalogingmtgcards.data.repository.autocompleteSearchRepository.AutocompleteSearchRepositoryImpl
 import com.project.catalogingmtgcards.data.repository.getListCardRepository.GetCardListRepository
@@ -18,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object DataModule {
     fun loadDataModule() {
-        loadKoinModules(repositoryModule + retrofitModule)
+        loadKoinModules(repositoryModule + retrofitModule + firebaseModule)
     }
 
     private const val URL_BASE = "https://api.scryfall.com/"
@@ -46,5 +52,11 @@ object DataModule {
         single<SymbolRepository> { SymbolRepositoryImpl(get()) }
         single<AutocompleteSearchRepository> { AutocompleteSearchRepositoryImpl(get()) }
         single <GetCardByNameRepository>{ GetCardByNameRepositoryImpl(get()) }
+        single { FirebaseAuthRepository(get()) }
+    }
+
+    private val firebaseModule = module {
+        single<FirebaseAuth> { Firebase.auth }
+        single<FirebaseFirestore> { Firebase.firestore }
     }
 }

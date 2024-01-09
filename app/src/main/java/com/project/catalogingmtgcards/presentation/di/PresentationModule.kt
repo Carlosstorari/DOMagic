@@ -1,5 +1,6 @@
 package com.project.catalogingmtgcards.presentation.di
 
+import com.project.catalogingmtgcards.presentation.ui.viewmodel.LoginViewModel
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.ScryFallViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
@@ -13,5 +14,6 @@ object PresentationModule {
 
     private val viewModelModule = module {
         viewModel { ScryFallViewModel(get(), get(), get(), get(), get()) }
+        viewModel { LoginViewModel(get()) }
     }
 }

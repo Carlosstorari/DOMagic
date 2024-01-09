@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.project.catalogingmtgcards.R
 
-class CreatedDecksFragment : Fragment() {
+class CreatedDecksFragment : BaseFragment() {
 
 
     override fun onCreateView(

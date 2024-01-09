@@ -17,7 +17,7 @@ import com.project.catalogingmtgcards.presentation.ui.viewmodel.ScryFallViewMode
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.ScryFallViewModelState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SearchCardFragment : Fragment() {
+class SearchCardFragment : BaseFragment() {
     private lateinit var binding: FragmentSearchCardBinding
     private val viewModel: ScryFallViewModel by viewModel()
 
@@ -26,6 +26,11 @@ class SearchCardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSearchCardBinding.inflate(inflater, container, false)
+        setupInputSearch()
+        return binding.root
+    }
+
+    private fun setupInputSearch() {
         val searchView = binding.inputSearchCard
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -38,7 +43,6 @@ class SearchCardFragment : Fragment() {
             }
 
         })
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
