@@ -1,32 +1,17 @@
-package com.project.catalogingmtgcards.data.repository
+package com.project.catalogingmtgcards.data.repository.authLoginRepository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
-import com.google.firebase.auth.FirebaseUser
 import com.project.catalogingmtgcards.R
+import com.project.catalogingmtgcards.data.repository.Resource
 import com.project.catalogingmtgcards.domain.model.User
 
-private const val TAG = "firebaseAuthRepository"
-
-class FirebaseAuthRepository(private val firebaseAuth: FirebaseAuth) {
-
-    fun logout() {
-        firebaseAuth.signOut()
-    }
-
-    fun isLogged(): Boolean {
-        val firebaseUser: FirebaseUser? = firebaseAuth.currentUser
-        if (firebaseUser != null) {
-            return true
-        }
-        return false
-    }
-
-    fun authLogin(user: User): LiveData<Resource<Boolean>> {
+class AuthLoginFirebaseRepositoryImpl(private val firebaseAuth: FirebaseAuth) :
+    AuthLoginFirebaseRepository {
+    override fun authLogin(user: User): LiveData<Resource<Boolean>> {
         val liveData = MutableLiveData<Resource<Boolean>>()
         try {
             firebaseAuth.signInWithEmailAndPassword(user.email, user.password)
@@ -34,7 +19,6 @@ class FirebaseAuthRepository(private val firebaseAuth: FirebaseAuth) {
                     if (task.isSuccessful) {
                         liveData.value = Resource(true)
                     } else {
-                        Log.e(TAG, "auth: ", task.exception)
                         val errorMessage = catchAuthError(task.exception)
                         liveData.value = Resource(false, errorMessage)
                     }

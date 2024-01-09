@@ -1,5 +1,9 @@
 package com.project.catalogingmtgcards.domain.di
 
+import com.project.catalogingmtgcards.domain.useCase.loginUseCase.LoginUseCase
+import com.project.catalogingmtgcards.domain.useCase.loginUseCase.LoginUseCaseImpl
+import com.project.catalogingmtgcards.domain.useCase.authLoginUseCase.AuthLoginUseCase
+import com.project.catalogingmtgcards.domain.useCase.authLoginUseCase.AuthLoginUseCaseImpl
 import com.project.catalogingmtgcards.domain.useCase.getListCardUseCase.GetListCardUseCase
 import com.project.catalogingmtgcards.domain.useCase.getCardByNameRepository.GetCardByNameUseCase
 import com.project.catalogingmtgcards.domain.useCase.getCardByNameRepository.GetCardByNameUseCaseImpl
@@ -27,5 +31,7 @@ object UseCaseModule {
             )
         }
         single<GetCardByNameUseCase> { GetCardByNameUseCaseImpl(get(), get()) }
+        single<AuthLoginUseCase> { AuthLoginUseCaseImpl(get()) }
+        single<LoginUseCase> { LoginUseCaseImpl(get()) }
     }
 }

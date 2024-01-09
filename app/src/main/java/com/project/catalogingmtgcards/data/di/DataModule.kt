@@ -5,7 +5,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.project.catalogingmtgcards.data.repository.FirebaseAuthRepository
+import com.project.catalogingmtgcards.data.repository.authLoginRepository.AuthLoginFirebaseRepository
+import com.project.catalogingmtgcards.data.repository.authLoginRepository.AuthLoginFirebaseRepositoryImpl
 import com.project.catalogingmtgcards.data.repository.autocompleteSearchRepository.AutocompleteSearchRepository
 import com.project.catalogingmtgcards.data.repository.autocompleteSearchRepository.AutocompleteSearchRepositoryImpl
 import com.project.catalogingmtgcards.data.repository.getListCardRepository.GetCardListRepository
@@ -14,6 +15,8 @@ import com.project.catalogingmtgcards.data.repository.getCardByNameRepository.Ge
 import com.project.catalogingmtgcards.data.repository.getCardByNameRepository.GetCardByNameRepositoryImpl
 import com.project.catalogingmtgcards.data.repository.getImageManaSymbolRepository.SymbolRepository
 import com.project.catalogingmtgcards.data.repository.getImageManaSymbolRepository.SymbolRepositoryImpl
+import com.project.catalogingmtgcards.data.repository.loginRepository.LoginRepository
+import com.project.catalogingmtgcards.data.repository.loginRepository.LoginRepositoryImpl
 import com.project.catalogingmtgcards.data.service.ScryfallService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -52,7 +55,8 @@ object DataModule {
         single<SymbolRepository> { SymbolRepositoryImpl(get()) }
         single<AutocompleteSearchRepository> { AutocompleteSearchRepositoryImpl(get()) }
         single <GetCardByNameRepository>{ GetCardByNameRepositoryImpl(get()) }
-        single { FirebaseAuthRepository(get()) }
+        single<AuthLoginFirebaseRepository> { AuthLoginFirebaseRepositoryImpl(get()) }
+        single<LoginRepository> { LoginRepositoryImpl(get()) }
     }
 
     private val firebaseModule = module {

@@ -18,6 +18,15 @@ abstract class BaseFragment : Fragment() {
         isNotLogged()
     }
 
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//        if (requireActivity() is MainActivity) {
+//            var  mainActivity = requireActivity() as MainActivity
+//            mainActivity.setBottomNavigationVisibility(bottomNavigationViewVisibility)
+//        }
+//    }
+
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity is MainActivity) {
