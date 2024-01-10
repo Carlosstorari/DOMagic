@@ -23,8 +23,13 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.main_activity_nav_host) as NavHostFragment
 
         navController = navHostFragment.navController
+        setupBottomNav()
+        setupVisibilityBottomNav()
 
-        binding.bottomNavigation.visibility = View.GONE
+
+    }
+
+    private fun setupBottomNav() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.search_page -> {
@@ -40,11 +45,25 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    private fun setupVisibilityBottomNav() {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.search_card_fragment -> showBottomNav()
+                R.id.created_decks_fragment -> showBottomNav()
+                else -> hideBottomNav()
+            }
+        }
+    }
+
+    private fun showBottomNav() {
+        binding.bottomNavigation.visibility = View.VISIBLE
 
     }
 
-    fun setBottomNavigationVisibility(visibility: Int) {
-        binding.bottomNavigation.visibility = visibility
-    }
+    private fun hideBottomNav() {
+        binding.bottomNavigation.visibility = View.GONE
 
+    }
 }
