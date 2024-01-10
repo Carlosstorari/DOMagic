@@ -5,14 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.SearchView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.project.catalogingmtgcards.R
 import com.project.catalogingmtgcards.databinding.FragmentSearchCardBinding
 import com.project.catalogingmtgcards.domain.model.Card
-import com.project.catalogingmtgcards.presentation.adapter.ListaCardsAdapter
+import com.project.catalogingmtgcards.presentation.adapter.ListCardsAdapter
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.ScryFallViewModel
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.ScryFallViewModelState
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -77,7 +74,7 @@ class SearchCardFragment : BaseFragment() {
 
     private fun setupRecyclerView(list: List<Card>) {
         binding.cardListHome.apply {
-            adapter = ListaCardsAdapter(requireActivity(), list)
+            adapter = ListCardsAdapter(requireActivity(), list)
             layoutManager = LinearLayoutManager(requireActivity())
         }
     }

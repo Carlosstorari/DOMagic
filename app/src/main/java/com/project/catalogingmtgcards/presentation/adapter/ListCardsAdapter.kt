@@ -1,7 +1,6 @@
 package com.project.catalogingmtgcards.presentation.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,10 +8,10 @@ import com.project.catalogingmtgcards.databinding.CardListItemBinding
 import com.project.catalogingmtgcards.domain.model.Card
 
 
-class ListaCardsAdapter(
+class ListCardsAdapter(
     private val context: Context,
     cards: List<Card>
-) : RecyclerView.Adapter<ListaCardsAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<ListCardsAdapter.ViewHolder>() {
 
     private val cards = cards.toMutableList()
     private var idListCard = mutableSetOf<String>()
