@@ -1,32 +1,31 @@
 package com.project.catalogingmtgcards.presentation.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.project.catalogingmtgcards.R
-import com.project.catalogingmtgcards.databinding.FragmentCreatedDecksBinding
+import com.project.catalogingmtgcards.databinding.FragmentDeckListBinding
 import com.project.catalogingmtgcards.domain.model.DeckItem
 import com.project.catalogingmtgcards.presentation.adapter.DeckListAdapter
+import com.project.catalogingmtgcards.presentation.ui.viewmodel.DeckListViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CreatedDecksFragment : BaseFragment() {
-    private lateinit var binding: FragmentCreatedDecksBinding
+class DeckListFragment : BaseFragment() {
+    private lateinit var binding: FragmentDeckListBinding
+    private val viewModel: DeckListViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCreatedDecksBinding.inflate(inflater, container, false)
+        binding = FragmentDeckListBinding.inflate(inflater, container, false)
 
-        val list = listOf(
-            DeckItem(imgCard = null, name = "Izzet", subtitle = "azul vermelho"),
-            DeckItem(imgCard = null, name = "Jundi", subtitle = "azul vermelho"),
-            DeckItem(imgCard = null, name = "Smeagol", subtitle = "azul vermelho"),
-            DeckItem(imgCard = null, name = "Frodo", subtitle = "azul vermelho")
-        )
-        setupRecyclerView(list)
+        viewModel.getListDecks().observe(viewLifecycleOwner) {
+            it?.let { list ->
+                setupRecyclerView(list)
+            }
+        }
         return binding.root
     }
 

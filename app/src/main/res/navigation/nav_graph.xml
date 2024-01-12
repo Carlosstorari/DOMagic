@@ -6,9 +6,9 @@
     app:startDestination="@id/search_card_fragment">
     <fragment
         android:id="@+id/created_decks_fragment"
-        android:name="com.project.catalogingmtgcards.presentation.ui.fragments.CreatedDecksFragment"
+        android:name="com.project.catalogingmtgcards.presentation.ui.fragments.DeckListFragment"
         android:label="fragment_created_decks"
-        tools:layout="@layout/fragment_created_decks" >
+        tools:layout="@layout/fragment_deck_list" >
         <action
             android:id="@+id/action_createdDecksFragment_to_searchCardFragment"
             app:destination="@id/search_card_fragment" />

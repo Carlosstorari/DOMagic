@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey_900"
-    tools:context=".presentation.ui.fragments.CreatedDecksFragment">
+    tools:context=".presentation.ui.fragments.DeckListFragment">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/deck_list"
         android:layout_width="0dp"

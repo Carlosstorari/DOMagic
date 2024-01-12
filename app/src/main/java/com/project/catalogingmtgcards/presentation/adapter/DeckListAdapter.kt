@@ -21,7 +21,6 @@ class DeckListAdapter(
         fun bindDeck(deck: DeckItem) {
             binding.apply {
                 deckName.text = deck.name
-                deckSubtitle.text = deck.subtitle
             }
         }
     }
@@ -37,5 +36,11 @@ class DeckListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val deck = decks[position]
         holder.bindDeck(deck)
+    }
+
+    fun refresh(deckList: List<DeckItem>) {
+        this.decks.clear()
+        this.decks.addAll(deckList)
+        notifyDataSetChanged()
     }
 }

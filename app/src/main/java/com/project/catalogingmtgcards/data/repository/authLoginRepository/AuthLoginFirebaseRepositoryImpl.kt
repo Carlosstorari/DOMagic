@@ -29,6 +29,13 @@ class AuthLoginFirebaseRepositoryImpl(private val firebaseAuth: FirebaseAuth) :
         return liveData
     }
 
+    fun getUser() {
+        val currentUser = firebaseAuth.currentUser
+        currentUser?.let {
+            val uid = it.uid
+        }
+    }
+
     private fun catchAuthError(exception: Exception?): Int = when (exception) {
         is FirebaseAuthInvalidUserException,
         is FirebaseAuthInvalidCredentialsException -> R.string.email_or_senha_incorrect
