@@ -14,13 +14,14 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class DeckListFragment : BaseFragment() {
     private lateinit var binding: FragmentDeckListBinding
     private val viewModel: DeckListViewModel by viewModel()
+    var uid = ""
+    var uidIsGet = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDeckListBinding.inflate(inflater, container, false)
-
         viewModel.getListDecks().observe(viewLifecycleOwner) {
             it?.let { list ->
                 setupRecyclerView(list)

@@ -6,8 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.project.catalogingmtgcards.R
+import com.project.catalogingmtgcards.core.DataCoordinator
+import com.project.catalogingmtgcards.core.getStringDataStore
 import com.project.catalogingmtgcards.databinding.ActivityMainBinding
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.LoginViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var navController: NavController
     private val loginViewModel: LoginViewModel by viewModel()
+    var uid = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         setupBottomNav()
         setupVisibilityBottomNav()
+        setupCoordinators()
 
 
     }
@@ -65,5 +71,16 @@ class MainActivity : AppCompatActivity() {
     private fun hideBottomNav() {
         binding.bottomNavigation.visibility = View.GONE
 
+    }
+
+    private fun setupCoordinators() {
+        DataCoordinator.shared.initialize(
+            context = baseContext,
+            onLoad = {
+                GlobalScope.launch {
+                    uid = DataCoordinator.shared.getStringDataStore()
+                }
+            }
+        )
     }
 }

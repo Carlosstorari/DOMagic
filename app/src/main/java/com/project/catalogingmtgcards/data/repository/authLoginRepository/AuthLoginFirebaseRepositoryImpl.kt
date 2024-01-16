@@ -1,11 +1,17 @@
 package com.project.catalogingmtgcards.data.repository.authLoginRepository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.project.catalogingmtgcards.R
+import com.project.catalogingmtgcards.core.DataCoordinator
+import com.project.catalogingmtgcards.core.updateString
 import com.project.catalogingmtgcards.data.repository.Resource
 import com.project.catalogingmtgcards.domain.model.User
 
@@ -27,13 +33,6 @@ class AuthLoginFirebaseRepositoryImpl(private val firebaseAuth: FirebaseAuth) :
             liveData.value = Resource(false, R.string.e_mail_or_password_empty)
         }
         return liveData
-    }
-
-    fun getUser() {
-        val currentUser = firebaseAuth.currentUser
-        currentUser?.let {
-            val uid = it.uid
-        }
     }
 
     private fun catchAuthError(exception: Exception?): Int = when (exception) {
