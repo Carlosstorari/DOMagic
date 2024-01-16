@@ -69,6 +69,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-firestore'
 
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+    implementation("androidx.datastore:datastore-preferences-rxjava2:1.0.0")
+    implementation("androidx.datastore:datastore-preferences-rxjava3:1.0.0")
+
     implementation "io.coil-kt:coil:2.4.0"
     implementation "io.coil-kt:coil-svg:2.4.0"
     implementation "androidx.cardview:cardview:1.0.0"
