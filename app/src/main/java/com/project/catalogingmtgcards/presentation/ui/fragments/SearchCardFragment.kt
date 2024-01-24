@@ -6,7 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.project.catalogingmtgcards.NavGraphDirections
+import com.project.catalogingmtgcards.R
 import com.project.catalogingmtgcards.databinding.FragmentSearchCardBinding
 import com.project.catalogingmtgcards.domain.model.Card
 import com.project.catalogingmtgcards.presentation.adapter.ListCardsAdapter
@@ -14,15 +18,18 @@ import com.project.catalogingmtgcards.presentation.ui.viewmodel.ScryFallViewMode
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.ScryFallViewModelState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SearchCardFragment : BaseFragment() {
+class SearchCardFragment : Fragment() {
     private lateinit var binding: FragmentSearchCardBinding
     private val viewModel: ScryFallViewModel by viewModel()
+    private val navController by lazy { findNavController() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSearchCardBinding.inflate(inflater, container, false)
+        val isNotLogged = requireActivity().intent.getBooleanExtra("isNotLogged", true)
+        if (isNotLogged) goToLogin()
         setupInputSearch()
         return binding.root
     }
@@ -40,6 +47,12 @@ class SearchCardFragment : BaseFragment() {
             }
 
         })
+    }
+
+    private fun goToLogin() {
+        val direction = NavGraphDirections.globalActionLogin()
+        navController.navigate(direction)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

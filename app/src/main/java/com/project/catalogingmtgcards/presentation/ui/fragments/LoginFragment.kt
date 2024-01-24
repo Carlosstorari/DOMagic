@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.project.catalogingmtgcards.R
+import com.project.catalogingmtgcards.ToLoginFlowDirections
 import com.project.catalogingmtgcards.databinding.FragmentLoginBinding
 import com.project.catalogingmtgcards.domain.model.User
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.LoginViewModel
@@ -33,12 +34,19 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
+//    fun changeGraphToRoot(fragment: Fragment): NavController {
+//        val navController = fragment.findNavController()
+//        navController.setGraph(R.navigation.nav_root)
+//        return navController
+//    }
+
     private fun authLogin(email: String, password: String) {
         loginViewModel.authLogin(User(email, password))
             .observe(viewLifecycleOwner, Observer {
                 it?.let { resource ->
                     if (resource.content) {
-                        val direction = LoginFragmentDirections.actionLoginFragmentToSearchView()
+                        requireActivity().intent.putExtra("isNotLogged", false)
+                        val direction = ToLoginFlowDirections.actionGlobalSearchView()
                         navController.navigate(direction)
                     } else {
                         val errorMessage = resource.error?.let { error ->

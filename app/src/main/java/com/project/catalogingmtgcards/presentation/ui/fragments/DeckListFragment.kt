@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.catalogingmtgcards.databinding.FragmentDeckListBinding
 import com.project.catalogingmtgcards.domain.model.DeckItem
@@ -11,7 +12,7 @@ import com.project.catalogingmtgcards.presentation.adapter.DeckListAdapter
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.DeckListViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DeckListFragment : BaseFragment() {
+class DeckListFragment : Fragment() {
     private lateinit var binding: FragmentDeckListBinding
     private val viewModel: DeckListViewModel by viewModel()
     var uid = ""

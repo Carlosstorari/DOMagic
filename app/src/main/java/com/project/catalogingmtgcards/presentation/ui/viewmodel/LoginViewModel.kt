@@ -13,7 +13,6 @@ class LoginViewModel(
 ): ViewModel() {
 
     fun authLogin(user: User): LiveData<Resource<Boolean>> {
-
         return authLoginUseCase.authLogin(user)
     }
 

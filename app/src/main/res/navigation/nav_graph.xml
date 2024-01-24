@@ -8,7 +8,7 @@
         android:id="@+id/created_decks_fragment"
         android:name="com.project.catalogingmtgcards.presentation.ui.fragments.DeckListFragment"
         android:label="fragment_created_decks"
-        tools:layout="@layout/fragment_deck_list" >
+        tools:layout="@layout/fragment_deck_list">
         <action
             android:id="@+id/action_createdDecksFragment_to_searchCardFragment"
             app:destination="@id/search_card_fragment" />
@@ -17,44 +17,27 @@
         android:id="@+id/search_card_fragment"
         android:name="com.project.catalogingmtgcards.presentation.ui.fragments.SearchCardFragment"
         android:label="fragment_search_card"
-        tools:layout="@layout/fragment_search_card" >
+        tools:layout="@layout/fragment_search_card">
         <action
             android:id="@+id/action_searchCardFragment_to_createdDecksFragment"
             app:destination="@id/created_decks_fragment" />
     </fragment>
     <action
         android:id="@+id/global_action_login"
-        app:destination="@id/login_flow"
+        app:destination="@id/to_login_flow"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@anim/nav_default_pop_exit_anim"
         app:popUpTo="@+id/search_card_fragment"
         app:popUpToInclusive="true" />
-    <navigation android:id="@+id/login_flow"
-        app:startDestination="@id/login_fragment">
-        <fragment
-            android:id="@+id/login_fragment"
-            android:name="com.project.catalogingmtgcards.presentation.ui.fragments.LoginFragment"
-            android:label="LoginFragment"
-            tools:layout="@layout/fragment_login">
-            <action
-                android:id="@+id/action_loginFragment_to_newUserRegister"
-                app:destination="@id/new_user_register" />
-            <action
-                android:id="@+id/action_loginFragment_to_search_view"
-                app:destination="@id/search_card_fragment"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"
-                app:popUpTo="@+id/login_fragment"
-                app:popUpToInclusive="true" />
-        </fragment>
-        <fragment
-            android:id="@+id/new_user_register"
-            android:name="com.project.catalogingmtgcards.presentation.ui.fragments.NewUserRegister"
-            android:label="NewUserRegister"
-            tools:layout="@layout/fragment_new_user_register" />
+    <navigation
+        android:id="@+id/to_login_flow"
+        app:startDestination="@id/login_flow">
+        <include app:graph="@navigation/login_flow" />
+        <action
+            android:id="@+id/action_global_search_view"
+            app:destination="@id/search_card_fragment" />
     </navigation>
+
 </navigation>

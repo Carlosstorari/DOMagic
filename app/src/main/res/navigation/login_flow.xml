@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_flow"
+    app:startDestination="@id/login_fragment">
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.project.catalogingmtgcards.presentation.ui.fragments.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_newUserRegister"
+            app:destination="@id/new_user_register" />
+    </fragment>
+    <fragment
+        android:id="@+id/new_user_register"
+        android:name="com.project.catalogingmtgcards.presentation.ui.fragments.NewUserRegister"
+        android:label="NewUserRegister"
+        tools:layout="@layout/fragment_new_user_register" />
+
+</navigation>

@@ -1,17 +1,11 @@
 package com.project.catalogingmtgcards.data.repository.authLoginRepository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
-import com.google.firebase.auth.UserProfileChangeRequest
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.project.catalogingmtgcards.R
-import com.project.catalogingmtgcards.core.DataCoordinator
-import com.project.catalogingmtgcards.core.updateString
 import com.project.catalogingmtgcards.data.repository.Resource
 import com.project.catalogingmtgcards.domain.model.User
 
