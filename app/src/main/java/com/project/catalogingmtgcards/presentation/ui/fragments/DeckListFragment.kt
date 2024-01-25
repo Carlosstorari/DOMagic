@@ -12,6 +12,7 @@ import com.project.catalogingmtgcards.NavGraphDirections
 import com.project.catalogingmtgcards.databinding.FragmentDeckListBinding
 import com.project.catalogingmtgcards.domain.model.DeckItem
 import com.project.catalogingmtgcards.presentation.adapter.DeckListAdapter
+import com.project.catalogingmtgcards.presentation.ui.fragments.ExtrasActivity.IS_NOT_LOGGED
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.DeckListViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,7 +26,7 @@ class DeckListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDeckListBinding.inflate(inflater, container, false)
-        val isNotLogged = requireActivity().intent.getBooleanExtra("isNotLogged", true)
+        val isNotLogged = requireActivity().intent.getBooleanExtra(IS_NOT_LOGGED, true)
         if (isNotLogged) goToLogin()
         viewModel.getListDecks().observe(viewLifecycleOwner) {
             it?.let { list ->

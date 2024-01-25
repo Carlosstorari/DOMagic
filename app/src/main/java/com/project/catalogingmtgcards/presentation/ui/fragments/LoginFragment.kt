@@ -12,6 +12,7 @@ import com.project.catalogingmtgcards.ToLoginFlowDirections
 import com.project.catalogingmtgcards.commons.snackBar
 import com.project.catalogingmtgcards.databinding.FragmentLoginBinding
 import com.project.catalogingmtgcards.domain.model.User
+import com.project.catalogingmtgcards.presentation.ui.fragments.ExtrasActivity.IS_NOT_LOGGED
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.LoginViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,7 +37,7 @@ class LoginFragment : Fragment() {
             .observe(viewLifecycleOwner, Observer {
                 it?.let { resource ->
                     if (resource.content) {
-                        requireActivity().intent.putExtra("isNotLogged", false)
+                        requireActivity().intent.putExtra(IS_NOT_LOGGED, false)
                         val direction = ToLoginFlowDirections.actionLoginToDeckView()
                         navController.navigate(direction)
                     } else {

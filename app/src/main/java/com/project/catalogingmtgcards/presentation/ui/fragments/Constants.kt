@@ -7,3 +7,8 @@ object SearchConstants {
     const val ONLY_BLACK = "color>=b -c:u -c:g -c:r -c:w"
     const val ONLY_WHITE = "color>=w -c:u -c:g -c:b -c:r"
 }
+
+object ExtrasActivity {
+    const val IS_NOT_LOGGED = "isNotLogged"
+}
+
