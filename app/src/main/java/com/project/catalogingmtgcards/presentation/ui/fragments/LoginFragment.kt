@@ -37,7 +37,7 @@ class LoginFragment : Fragment() {
                 it?.let { resource ->
                     if (resource.content) {
                         requireActivity().intent.putExtra("isNotLogged", false)
-                        val direction = ToLoginFlowDirections.actionGlobalSearchView()
+                        val direction = ToLoginFlowDirections.actionLoginToDeckView()
                         navController.navigate(direction)
                     } else {
                         val errorMessage = resource.error?.let { error ->

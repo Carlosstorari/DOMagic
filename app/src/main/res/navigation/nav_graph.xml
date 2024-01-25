@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/search_card_fragment">
+    app:startDestination="@id/created_decks_fragment">
     <fragment
         android:id="@+id/created_decks_fragment"
         android:name="com.project.catalogingmtgcards.presentation.ui.fragments.DeckListFragment"
@@ -36,8 +36,8 @@
         app:startDestination="@id/login_flow">
         <include app:graph="@navigation/login_flow" />
         <action
-            android:id="@+id/action_global_search_view"
-            app:destination="@id/search_card_fragment" />
+            android:id="@+id/action_login_to_deck_view"
+            app:destination="@id/created_decks_fragment" />
     </navigation>
 
 </navigation>
