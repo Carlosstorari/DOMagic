@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.catalogingmtgcards.NavGraphDirections
 import com.project.catalogingmtgcards.databinding.FragmentDeckListBinding
@@ -42,7 +43,7 @@ class DeckListFragment : Fragment() {
     private fun setupRecyclerView(deckList: List<DeckItem>) {
         binding.deckList.apply {
             adapter = DeckListAdapter(requireActivity(), deckList)
-            layoutManager = LinearLayoutManager(requireActivity())
+            layoutManager = GridLayoutManager(requireActivity(), 2)
         }
     }
 
