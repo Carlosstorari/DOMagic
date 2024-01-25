@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.project.catalogingmtgcards.R
 import com.project.catalogingmtgcards.ToLoginFlowDirections
+import com.project.catalogingmtgcards.commons.snackBar
 import com.project.catalogingmtgcards.databinding.FragmentLoginBinding
 import com.project.catalogingmtgcards.domain.model.User
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.LoginViewModel
@@ -26,19 +27,9 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
-        val email = binding.loginEmail.editText?.text
-        val password = binding.loginPassword.editText?.text
-        binding.loginBtn.setOnClickListener {
-            authLogin(email.toString(), password.toString())
-        }
+        setupLoginBtn()
         return binding.root
     }
-
-//    fun changeGraphToRoot(fragment: Fragment): NavController {
-//        val navController = fragment.findNavController()
-//        navController.setGraph(R.navigation.nav_root)
-//        return navController
-//    }
 
     private fun authLogin(email: String, password: String) {
         loginViewModel.authLogin(User(email, password))
@@ -53,9 +44,45 @@ class LoginFragment : Fragment() {
                             getString(error)
                         } ?: getString(R.string.fail_auth)
 
+                        view?.snackBar(errorMessage)
+
                     }
                 }
             })
+    }
+
+    private fun setupLoginBtn() {
+        binding.apply {
+            loginBtn.setOnClickListener {
+                cleanFields()
+                val email = loginEmail.editText?.text.toString()
+                val password = loginPassword.editText?.text.toString()
+                if (validateFields(email, password)) {
+                    authLogin(email, password)
+                }
+            }
+        }
+    }
+
+    private fun FragmentLoginBinding.validateFields(email: String, password: String): Boolean {
+        var isLoginValid = true
+
+        if (email.isBlank()) {
+            loginEmail.error = getString(R.string.email_required)
+            isLoginValid = false
+        }
+
+        if (password.isBlank()) {
+            loginPassword.error = getString(R.string.password_required)
+        }
+        return isLoginValid
+    }
+
+    private fun cleanFields() {
+        binding.apply {
+            loginEmail.error = null
+            loginPassword.error = null
+        }
     }
 
 }

@@ -23,4 +23,6 @@
     <string name="e_mail_or_password_empty">campo de email e senha nao pode estar vazio</string>
     <string name="unknown_error">Erro desconhecido </string>
     <string name="fail_auth">falha na autenticacao</string>
+    <string name="email_required">campo do email não pode estar vazio</string>
+    <string name="password_required">Campo da senha não pode estar vazio</string>
 </resources>
