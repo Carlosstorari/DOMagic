@@ -12,6 +12,10 @@ import com.project.catalogingmtgcards.domain.useCase.autocompleteSearchUseCase.G
 import com.project.catalogingmtgcards.domain.useCase.autocompleteSearchUseCase.GetListNameCardAutocompleteUseCaseImpl
 import com.project.catalogingmtgcards.domain.useCase.getImageManaSymbolUseCase.GetSymbolManaCostUseCase
 import com.project.catalogingmtgcards.domain.useCase.getImageManaSymbolUseCase.GetSymbolManaCostUseCaseImpl
+import com.project.catalogingmtgcards.domain.useCase.getUserDataUseCase.GetCardListDeckUseCase
+import com.project.catalogingmtgcards.domain.useCase.getUserDataUseCase.GetCardListDeckUseCaseImpl
+import com.project.catalogingmtgcards.domain.useCase.getUserDataUseCase.GetDeckByDocumentIdUseCase
+import com.project.catalogingmtgcards.domain.useCase.getUserDataUseCase.GetDeckByDocumentIdUseCaseImpl
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 
@@ -33,5 +37,7 @@ object UseCaseModule {
         single<GetCardByNameUseCase> { GetCardByNameUseCaseImpl(get(), get()) }
         single<AuthLoginUseCase> { AuthLoginUseCaseImpl(get()) }
         single<LoginUseCase> { LoginUseCaseImpl(get()) }
+        single<GetCardListDeckUseCase> { GetCardListDeckUseCaseImpl(get()) }
+        single<GetDeckByDocumentIdUseCase> { GetDeckByDocumentIdUseCaseImpl(get()) }
     }
 }

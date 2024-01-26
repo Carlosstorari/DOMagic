@@ -15,7 +15,7 @@ object PresentationModule {
 
     private val viewModelModule = module {
         viewModel { ScryFallViewModel(get(), get(), get(), get(), get()) }
-        viewModel { DeckListViewModel(get(), get()) }
+        viewModel { DeckListViewModel(get(), get(), get()) }
         viewModel { LoginViewModel(get(), get()) }
     }
 }

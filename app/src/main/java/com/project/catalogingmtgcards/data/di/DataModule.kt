@@ -15,6 +15,7 @@ import com.project.catalogingmtgcards.data.repository.getCardByNameRepository.Ge
 import com.project.catalogingmtgcards.data.repository.getCardByNameRepository.GetCardByNameRepositoryImpl
 import com.project.catalogingmtgcards.data.repository.getImageManaSymbolRepository.SymbolRepository
 import com.project.catalogingmtgcards.data.repository.getImageManaSymbolRepository.SymbolRepositoryImpl
+import com.project.catalogingmtgcards.data.repository.getUserDataRepository.GetUserDataRepository
 import com.project.catalogingmtgcards.data.repository.getUserDataRepository.GetUserDataRepositoryImpl
 import com.project.catalogingmtgcards.data.repository.loginRepository.LoginRepository
 import com.project.catalogingmtgcards.data.repository.loginRepository.LoginRepositoryImpl
@@ -58,7 +59,7 @@ object DataModule {
         single<GetCardByNameRepository> { GetCardByNameRepositoryImpl(get()) }
         single<AuthLoginFirebaseRepository> { AuthLoginFirebaseRepositoryImpl(get()) }
         single<LoginRepository> { LoginRepositoryImpl(get()) }
-        single { GetUserDataRepositoryImpl(get()) }
+        single <GetUserDataRepository>{ GetUserDataRepositoryImpl(get()) }
     }
 
     private val firebaseModule = module {

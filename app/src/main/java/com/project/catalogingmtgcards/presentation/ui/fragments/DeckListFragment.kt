@@ -1,6 +1,7 @@
 package com.project.catalogingmtgcards.presentation.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,12 +29,23 @@ class DeckListFragment : Fragment() {
         binding = FragmentDeckListBinding.inflate(inflater, container, false)
         val isNotLogged = requireActivity().intent.getBooleanExtra(IS_NOT_LOGGED, true)
         if (isNotLogged) goToLogin()
+        setupViewModel()
+        return binding.root
+    }
+
+    private fun setupViewModel() {
         viewModel.getListDecks().observe(viewLifecycleOwner) {
             it?.let { list ->
                 setupRecyclerView(list)
             }
         }
-        return binding.root
+
+        viewModel.getListCardDeckDetail(0).observe(viewLifecycleOwner) {
+            it?.let { list ->
+                Log.d("lista detalhe", list.toString())
+
+            }
+        }
     }
 
     private fun goToLogin() {
