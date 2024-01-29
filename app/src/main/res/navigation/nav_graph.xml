@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_createdDecksFragment_to_searchCardFragment"
             app:destination="@id/search_card_fragment" />
+        <action
+            android:id="@+id/action_created_decks_fragment_to_deckDetailFragment"
+            app:destination="@id/deckDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/search_card_fragment"
@@ -39,5 +42,14 @@
             android:id="@+id/action_login_to_deck_view"
             app:destination="@id/created_decks_fragment" />
     </navigation>
+    <fragment
+        android:id="@+id/deckDetailFragment"
+        android:name="com.project.catalogingmtgcards.presentation.ui.fragments.DeckDetailFragment"
+        android:label="fragment_deck_detail"
+        tools:layout="@layout/fragment_deck_detail" >
+        <argument
+            android:name="deck_id"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

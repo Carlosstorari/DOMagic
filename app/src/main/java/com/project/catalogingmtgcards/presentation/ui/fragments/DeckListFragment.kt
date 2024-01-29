@@ -1,26 +1,25 @@
 package com.project.catalogingmtgcards.presentation.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.catalogingmtgcards.NavGraphDirections
 import com.project.catalogingmtgcards.databinding.FragmentDeckListBinding
-import com.project.catalogingmtgcards.domain.model.DeckItem
 import com.project.catalogingmtgcards.presentation.adapter.DeckListAdapter
 import com.project.catalogingmtgcards.presentation.ui.fragments.ExtrasActivity.IS_NOT_LOGGED
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.DeckListViewModel
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DeckListFragment : Fragment() {
     private lateinit var binding: FragmentDeckListBinding
     private val viewModel: DeckListViewModel by viewModel()
     private val navController by lazy { findNavController() }
+    private val adapter: DeckListAdapter by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,14 +35,15 @@ class DeckListFragment : Fragment() {
     private fun setupViewModel() {
         viewModel.getListDecks().observe(viewLifecycleOwner) {
             it?.let { list ->
-                setupRecyclerView(list)
-            }
-        }
-
-        viewModel.getListCardDeckDetail(0).observe(viewLifecycleOwner) {
-            it?.let { list ->
-                Log.d("lista detalhe", list.toString())
-
+                adapter.refresh(list)
+                adapter.onItemDeckClickListener = { selectedDeck ->
+                    selectedDeck.deckId?.let { id ->
+                        val directions =
+                            DeckListFragmentDirections.actionCreatedDecksFragmentToDeckDetailFragment(id)
+                        navController.navigate(directions)
+                    }
+                }
+                setupRecyclerView()
             }
         }
     }
@@ -53,11 +53,9 @@ class DeckListFragment : Fragment() {
         navController.navigate(direction)
     }
 
-    private fun setupRecyclerView(deckList: List<DeckItem>) {
-        binding.deckList.apply {
-            adapter = DeckListAdapter(requireActivity(), deckList)
-            layoutManager = GridLayoutManager(requireActivity(), 2)
-        }
+    private fun setupRecyclerView() {
+        binding.deckList.adapter = adapter
+        binding.deckList.layoutManager = GridLayoutManager(requireActivity(), 2)
     }
 
 }

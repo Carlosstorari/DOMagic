@@ -15,8 +15,4 @@ class DeckListViewModel(
     fun getListDecks(): LiveData<List<DeckItem>> {
         return getDeckUseCase.getDeck()
     }
-
-    fun getListCardDeckDetail(index: Int): LiveData<List<String>> {
-        return getCardListDeckUseCase.getCardListDeck(index)
-    }
 }

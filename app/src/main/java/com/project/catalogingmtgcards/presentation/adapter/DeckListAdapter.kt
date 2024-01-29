@@ -1,6 +1,7 @@
 package com.project.catalogingmtgcards.presentation.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,16 +10,27 @@ import com.project.catalogingmtgcards.domain.model.DeckItem
 
 class DeckListAdapter(
     private val context: Context,
-    decks: List<DeckItem>
+    decks: List<DeckItem> = emptyList(),
+    var onItemDeckClickListener: (deck: DeckItem) -> Unit = {}
 ) : RecyclerView.Adapter<DeckListAdapter.ViewHolder>() {
 
     private val decks = decks.toMutableList()
 
-    class ViewHolder(
+    inner class ViewHolder(
         private val binding: DeckItemBinding,
         private val context: Context,
     ) : RecyclerView.ViewHolder(binding.root) {
+        private lateinit var deckItem: DeckItem
+        init {
+            itemView.setOnClickListener {
+                if(::deckItem.isInitialized) {
+                    onItemDeckClickListener(deckItem)
+                }
+            }
+        }
         fun bindDeck(deck: DeckItem) {
+            this.deckItem = deck
+
             binding.apply {
                 deckName.text = deck.name
             }

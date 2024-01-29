@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.catalogingmtgcards.databinding.FragmentSearchCardBinding
 import com.project.catalogingmtgcards.domain.model.Card
 import com.project.catalogingmtgcards.presentation.adapter.ListCardsAdapter
-import com.project.catalogingmtgcards.presentation.ui.viewmodel.ScryFallViewModel
+import com.project.catalogingmtgcards.presentation.ui.viewmodel.SearchCardViewModel
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.ScryFallViewModelState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchCardFragment : Fragment() {
     private lateinit var binding: FragmentSearchCardBinding
-    private val viewModel: ScryFallViewModel by viewModel()
+    private val viewModel: SearchCardViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

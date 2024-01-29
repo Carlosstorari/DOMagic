@@ -15,7 +15,7 @@ import com.project.catalogingmtgcards.domain.useCase.getImageManaSymbolUseCase.G
 import com.project.catalogingmtgcards.presentation.ui.fragments.SearchConstants.ONLY_RED
 import kotlinx.coroutines.launch
 
-class ScryFallViewModel(
+class SearchCardViewModel(
     application: Application,
     private val useCaseListCard: GetListCardUseCase,
     private val useCaseSymbol: GetSymbolManaCostUseCase,

@@ -11,59 +11,69 @@ import com.project.catalogingmtgcards.data.repository.FirestoreConstants.DECK_LI
 import com.project.catalogingmtgcards.data.repository.FirestoreConstants.DOC_DECK_LIST
 import com.project.catalogingmtgcards.domain.model.DeckItem
 
-class GetUserDataRepositoryImpl(private val firestore: FirebaseFirestore): GetUserDataRepository {
+class GetUserDataRepositoryImpl(private val firestore: FirebaseFirestore) : GetUserDataRepository {
 
-    override fun getDeckByDocumentId(): LiveData<List<DeckItem>> = MutableLiveData<List<DeckItem>>().apply {
-        firestore.collection(COLLECTION_USERS).addSnapshotListener { s, _ ->
-            Firebase.auth.currentUser?.let { user ->
-                s?.let { snapshot ->
-                    var list: MutableList<DeckItem> = mutableListOf()
-                    snapshot
-                        .documents
-                        .filter { it.id == user.uid }
-                        .mapNotNull { doc ->
-                            val deckList = doc.get(DOC_DECK_LIST) as List<Map<String, Any>>
-                            deckList.forEach {
-                                val name = it[DECK_LIST_NAME] as String
-                                val cardList = it[CARD_LIST_FROM_DECK] as List<String>
-                                list.add(DeckItemDocument(name, cardList).toDeckItem(user.uid))
+    override fun getDeckByDocumentId(): LiveData<List<DeckItem>> =
+        MutableLiveData<List<DeckItem>>().apply {
+            firestore.collection(COLLECTION_USERS).addSnapshotListener { s, _ ->
+                Firebase.auth.currentUser?.let { user ->
+                    s?.let { snapshot ->
+                        var list: MutableList<DeckItem> = mutableListOf()
+                        snapshot
+                            .documents
+                            .filter { it.id == user.uid }
+                            .mapNotNull { doc ->
+                                val deckList = doc.get(DOC_DECK_LIST) as List<Map<String, Any>>
+                                deckList.forEach {
+                                    val name = it[DECK_LIST_NAME] as String
+                                    val cardList = it[CARD_LIST_FROM_DECK] as List<String>
+                                    val deckId = it["deckId"] as String
+                                    list.add(
+                                        DeckItemDocument(name, cardList, deckId).toDeckItem(
+                                            user.uid
+                                        )
+                                    )
+                                }
                             }
-                        }
-                    value = list
+                        value = list
+                    }
                 }
+
             }
-
         }
-    }
 
-    override fun getCardListDeckDetail(index: Int): LiveData<List<String>> = MutableLiveData<List<String>>().apply {
-        firestore.collection(COLLECTION_USERS).addSnapshotListener { s, _ ->
-            Firebase.auth.currentUser?.let { user ->
-                s?.let { snapshot ->
-                    var list: List<String> = mutableListOf()
-                    snapshot
-                        .documents
-                        .filter { it.id == user.uid }
-                        .mapNotNull { doc ->
-                            val deckList = doc.get(DOC_DECK_LIST) as List<Map<String, Any>>
-                            list = deckList[index][CARD_LIST_FROM_DECK] as List<String>
-                        }
-                    value = list
+    override fun getCardListDeckDetail(deckId: String): LiveData<List<String>> =
+        MutableLiveData<List<String>>().apply {
+            firestore.collection(COLLECTION_USERS).addSnapshotListener { s, _ ->
+                Firebase.auth.currentUser?.let { user ->
+                    s?.let { snapshot ->
+                        var list: List<String> = mutableListOf()
+                        snapshot
+                            .documents
+                            .filter { it.id == user.uid }
+                            .mapNotNull { doc ->
+                                val deckList = doc.get(DOC_DECK_LIST) as List<Map<String, Any>>
+                                list = deckList.first { it["deckId"] as String == deckId }
+                                    .filterKeys { it.contains(CARD_LIST_FROM_DECK) }[CARD_LIST_FROM_DECK] as List<String>
+                            }
+                        value = list
+                    }
                 }
-            }
 
+            }
         }
-    }
 
     private class DeckItemDocument(
         val name: String = "",
-        val listCard: List<String>
-    ){
+        val listCard: List<String>,
+        val deckId: String
+    ) {
         fun toDeckItem(id: String) = DeckItem(
-            id = id,
+            userId = id,
             imgCard = null,
             name = name,
-            listCard = listCard
+            listCard = listCard,
+            deckId = deckId
         )
     }
 

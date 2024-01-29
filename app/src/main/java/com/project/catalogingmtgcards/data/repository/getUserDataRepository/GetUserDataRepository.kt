@@ -6,5 +6,5 @@ import com.project.catalogingmtgcards.domain.model.DeckItem
 interface GetUserDataRepository {
     fun getDeckByDocumentId(): LiveData<List<DeckItem>>
 
-    fun getCardListDeckDetail(index: Int): LiveData<List<String>>
+    fun getCardListDeckDetail(deckId: String): LiveData<List<String>>
 }
