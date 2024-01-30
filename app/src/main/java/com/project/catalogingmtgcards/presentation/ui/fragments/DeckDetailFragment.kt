@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.catalogingmtgcards.databinding.FragmentDeckDetailBinding
+import com.project.catalogingmtgcards.presentation.adapter.ListCardsAdapter
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.DeckDetailViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -32,10 +34,15 @@ class DeckDetailFragment : Fragment() {
         viewModel.getListCardName().observe(viewLifecycleOwner) {
             it?.let { list ->
                 Log.d("lista detalhe", list.toString())
-
+                viewModel.searchCardByName(list).observe(viewLifecycleOwner) { cardList ->
+                    Log.d("card list", cardList.toString())
+                    binding.cardListDeckDetail.apply {
+                        adapter = ListCardsAdapter(requireActivity(), cardList)
+                        layoutManager = LinearLayoutManager(requireActivity())
+                    }
+                }
             }
         }
-        viewModel.searchCardByName()
 
         return binding.root
     }

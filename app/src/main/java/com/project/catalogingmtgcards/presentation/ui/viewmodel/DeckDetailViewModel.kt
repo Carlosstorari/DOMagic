@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.project.catalogingmtgcards.data.response.CardResponseDto
 import com.project.catalogingmtgcards.domain.model.Card
@@ -24,35 +25,42 @@ class DeckDetailViewModel(
         return getCardByName.getCardListDeck(deckId)
     }
 
-    fun searchCardByName(cardName: String = "Adversária Sanguinária") {
+    fun searchCardByName(
+        list: List<String>
+    ): LiveData<List<Card>> = MutableLiveData<List<Card>>().apply {
+        var cardList = mutableListOf<Card>()
         viewModelScope.launch {
-            val getCard =
-                useCaseListCard.getCardByName(cardName)
-            if (getCard is ScryFallStateUseCase.Success) {
-                val useCaseGetManaCostSymbol = getCard.cardNamed?.let {
-                    useCaseSymbol.getSymbolManaCost(listOf(it))
+            list.forEach { cardName ->
+                val getCard =
+                    useCaseListCard.getCardByName(cardName)
+                if (getCard is ScryFallStateUseCase.Success) {
+                    val useCaseGetManaCostSymbol = getCard.cardNamed?.let {
+                        useCaseSymbol.getSymbolManaCost(listOf(it))
+                    }
+                    if (useCaseGetManaCostSymbol is ScryFallStateUseCase.Success) {
+                        val data = getCard.cardNamed
+                        val mana = useCaseGetManaCostSymbol.symbologyMana?.get(0)
+                        val card = createCardObject(data, mana)
+                        cardList.add(card)
+                        Log.d("single card", card.toString())
+                    }
                 }
-                if (useCaseGetManaCostSymbol is ScryFallStateUseCase.Success) {
-                    val data = getCard.cardNamed
-                    val mana = useCaseGetManaCostSymbol.symbologyMana?.get(0)
-                    val card = createCardObject(data, mana)
-                    Log.d("single card", card.toString())
-                }
-
             }
-
+            value = cardList
         }
+
     }
 
+
     private fun createCardObject(
-        card : CardResponseDto,
+        card: CardResponseDto,
         manaCostList: List<String>?
     ): Card = Card(
-            imgCard = card.imageCard.artCrop,
-            name = card.name,
-            typeLine = card.typeLine,
-            listUrlManaCost = manaCostList
-        )
+        imgCard = card.imageCard.artCrop,
+        name = card.name,
+        typeLine = card.typeLine,
+        listUrlManaCost = manaCostList
+    )
 
 
 }
