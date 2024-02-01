@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.project.catalogingmtgcards.NavGraphDirections
 import com.project.catalogingmtgcards.databinding.FragmentDeckListBinding
 import com.project.catalogingmtgcards.presentation.adapter.DeckListAdapter
+import com.project.catalogingmtgcards.presentation.ui.MainActivity
 import com.project.catalogingmtgcards.presentation.ui.fragments.ExtrasActivity.IS_NOT_LOGGED
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.DeckListViewModel
 import org.koin.android.ext.android.inject

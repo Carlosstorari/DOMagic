@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.catalogingmtgcards.databinding.FragmentSearchCardBinding
 import com.project.catalogingmtgcards.domain.model.Card
 import com.project.catalogingmtgcards.presentation.adapter.ListCardsAdapter
+import com.project.catalogingmtgcards.presentation.ui.MainActivity
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.SearchCardViewModel
 import com.project.catalogingmtgcards.presentation.ui.viewmodel.ScryFallViewModelState
 import org.koin.androidx.viewmodel.ext.android.viewModel

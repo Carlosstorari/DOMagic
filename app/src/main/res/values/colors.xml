@@ -22,5 +22,6 @@
     <color name="hint_text_color">#E6E0E9</color>
     <color name="btn_color">#9B51E0</color>
     <color name="input_text_color">#6F6C6C</color>
-
+    <color name="toolbar_color">#373737</color>
+    <color name="icon_toolbar_color">#C8C8C8</color>
 </resources>

@@ -21,15 +21,18 @@ class DeckDetailViewModel(
     private val useCaseSymbol: GetSymbolManaCostUseCase,
     application: Application
 ) : AndroidViewModel(application) {
+    private val state: MutableLiveData<ScryFallViewModelState> = MutableLiveData()
+    val getState: LiveData<ScryFallViewModelState> = state
     fun getListCardName(): LiveData<List<String>> {
         return getCardByName.getCardListDeck(deckId)
     }
 
     fun searchCardByName(
         list: List<String>
-    ): LiveData<List<Card>> = MutableLiveData<List<Card>>().apply {
+    ) {
         var cardList = mutableListOf<Card>()
         viewModelScope.launch {
+            state.postValue(ScryFallViewModelState.Loading)
             list.forEach { cardName ->
                 val getCard =
                     useCaseListCard.getCardByName(cardName)
@@ -42,11 +45,10 @@ class DeckDetailViewModel(
                         val mana = useCaseGetManaCostSymbol.symbologyMana?.get(0)
                         val card = createCardObject(data, mana)
                         cardList.add(card)
-                        Log.d("single card", card.toString())
                     }
                 }
             }
-            value = cardList
+            state.postValue(ScryFallViewModelState.Success(cardList))
         }
 
     }

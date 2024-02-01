@@ -5,6 +5,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.ui.fragments.DeckDetailFragment">
+
+    <com.project.catalogingmtgcards.presentation.components.CustomShimmerItem
+        android:id="@+id/shimmer_deck_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/card_list_deck_detail"
         android:layout_width="0dp"
