@@ -1,1 +1,2 @@
 # CatalogingMtgCards
+## 📚 Android tech stack
