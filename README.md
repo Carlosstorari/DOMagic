@@ -7,4 +7,4 @@ image progect HERE
 
 ### :computer: Android development
 
-## :building:  Architecture
+## :building_construction: Architecture
