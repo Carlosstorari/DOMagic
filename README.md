@@ -1,7 +1,7 @@
 # ODMagic
 ODMagic is designed to assist in organizing Magic deck cards, with its primary purpose being the exploration and study of components and architectures for Android development.
 
-image progect HERE 
+<img src="/assets/deck_screen.png" />
 
 ## 📚 Android tech stack
 
