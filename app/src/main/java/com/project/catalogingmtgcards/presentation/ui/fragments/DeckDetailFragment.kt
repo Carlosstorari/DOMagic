@@ -59,7 +59,7 @@ class DeckDetailFragment : Fragment() {
     private fun setupViewModelGetListCardName() {
         viewModel.getListCardName().observe(viewLifecycleOwner) {
             it?.let { list ->
-                binding.shimmerDeckDetail.createCardViewShimmer(1)
+                binding.shimmerDeckDetail.createCardViewShimmer(list.size)
                 viewModel.searchCardByName(list)
             }
         }

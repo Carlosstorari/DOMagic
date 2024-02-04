@@ -1,14 +1,8 @@
 package com.project.catalogingmtgcards.presentation.ui
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
-import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.project.catalogingmtgcards.R
@@ -32,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         //setHasOptionsMenu(true)
     }
 
-//    private fun hideSystemUI() {
+    //    private fun hideSystemUI() {
 //        WindowCompat.setDecorFitsSystemWindows(window, false)
 //        WindowInsetsControllerCompat(window, binding.root).let { controller ->
 //            controller.hide(WindowInsetsCompat.Type.statusBars())
@@ -40,9 +34,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 //    }
     fun changeToolbarTitle(title: String) {
-        binding.toolbar.apply {
-            this.title = title
-        }
+        binding.titleToolbar.text = title
     }
 
     private fun setupBottomNav() {
@@ -68,12 +60,14 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.search_card_fragment -> {
                     showBottomNav()
-                    binding.toolbar.title = "buscar card"
+                    binding.titleToolbar.text = "buscar card"
                 }
+
                 R.id.created_decks_fragment -> {
                     showBottomNav()
-                    binding.toolbar.title = "decks"
+                    binding.titleToolbar.text = "decks"
                 }
+
                 else -> hideBottomNav()
             }
         }

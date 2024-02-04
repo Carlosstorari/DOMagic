@@ -28,8 +28,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:titleTextColor="@color/icon_toolbar_color"
-                tool:title="teste"/>
+                >
+                <TextView
+                    android:id="@+id/title_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/icon_toolbar_color"
+                    tool:text="titulo"
+                    android:textStyle="bold"
+                    android:textSize="20sp" />
+            </androidx.appcompat.widget.Toolbar>
             <ImageView
                 android:id="@+id/ic_logout"
                 android:layout_width="wrap_content"
