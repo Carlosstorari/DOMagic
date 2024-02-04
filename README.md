@@ -5,6 +5,6 @@ image progect HERE
 
 ## 📚 Android tech stack
 
-### :computer: :bald_white_man: Android development
+### :computer: :bald_man: Android development
 
 ## :building_construction: Architecture
