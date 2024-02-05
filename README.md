@@ -1,5 +1,5 @@
-# ODMagic
-ODMagic is designed to assist in organizing Magic deck cards, with its primary purpose being the exploration and study of components and architectures for Android development.
+# DOMagic
+DOMagic is designed to assist in organizing Magic deck cards, with its primary purpose being the exploration and study of components and architectures for Android development.
 
 <img src="/assets/deck_screen.png" width="240" /> <img src="/assets/search_screen.png" width="240" /> <img src="/assets/deck_detail_screen.png" width="240" />
 
