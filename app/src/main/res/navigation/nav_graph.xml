@@ -6,7 +6,7 @@
     app:startDestination="@id/created_decks_fragment">
     <fragment
         android:id="@+id/created_decks_fragment"
-        android:name="com.project.catalogingmtgcards.presentation.ui.fragments.DeckListFragment"
+        android:name="com.project.domagic.presentation.ui.fragments.DeckListFragment"
         android:label="fragment_created_decks"
         tools:layout="@layout/fragment_deck_list">
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/search_card_fragment"
-        android:name="com.project.catalogingmtgcards.presentation.ui.fragments.SearchCardFragment"
+        android:name="com.project.domagic.presentation.ui.fragments.SearchCardFragment"
         android:label="fragment_search_card"
         tools:layout="@layout/fragment_search_card">
         <action
@@ -44,7 +44,7 @@
     </navigation>
     <fragment
         android:id="@+id/deckDetailFragment"
-        android:name="com.project.catalogingmtgcards.presentation.ui.fragments.DeckDetailFragment"
+        android:name="com.project.domagic.presentation.ui.fragments.DeckDetailFragment"
         android:label="fragment_deck_detail"
         tools:layout="@layout/fragment_deck_detail" >
         <argument

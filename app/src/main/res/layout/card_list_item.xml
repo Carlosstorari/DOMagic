@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.project.catalogingmtgcards.presentation.components.MainCardImage
+            <com.project.domagic.presentation.components.MainCardImage
                 android:id="@+id/cardIv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/card_name"
                 tools:text="Creature - Minotaur Shamanabcdefg" />
 
-            <com.project.catalogingmtgcards.presentation.components.ManaValueContainer
+            <com.project.domagic.presentation.components.ManaValueContainer
                 android:id="@+id/manaIv_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

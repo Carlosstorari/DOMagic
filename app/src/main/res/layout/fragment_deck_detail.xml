@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ui.fragments.DeckDetailFragment">
 
-    <com.project.catalogingmtgcards.presentation.components.CustomShimmerItem
+    <com.project.domagic.presentation.components.CustomShimmerItem
         android:id="@+id/shimmer_deck_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
